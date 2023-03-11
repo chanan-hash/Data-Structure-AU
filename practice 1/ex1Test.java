@@ -1,5 +1,7 @@
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ex1Test {
@@ -24,6 +26,13 @@ class ex1Test {
 
         assertEquals(2,sa1);
         assertEquals(1,sa2);
-
+    }
+    @Test
+    public void testEx5(){
+        int[] arr3 = {98, 2, 3, 1, 0, 0, 0, 3, 98, 98, 2, 2, 2, 0, 0, 0, 2};
+        int[] arr4 = arr3.clone();
+        ex1.sort(arr3);
+        Arrays.sort(arr4);
+        assertArrayEquals(arr4,arr3);
     }
 }

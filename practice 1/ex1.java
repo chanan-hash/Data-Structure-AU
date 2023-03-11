@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class ex1 {
 
     public static void main(String[] args) {
@@ -11,6 +13,13 @@ public class ex1 {
         int[] arr2 = {1, 4, 9, 17, 23, 0, 14};
         smallAbsolute(arr2);
 
+        int[] arr3 = {98, 2, 3, 1, 0, 0, 0, 3, 98, 98, 2, 2, 2, 0, 0, 0, 2};
+        int[] arr4 = arr3.clone();
+        System.out.println(Arrays.toString(arr4));
+        sort(arr3);
+        System.out.println(Arrays.toString(arr3));
+        int[] arr5 = Arrays.copyOf(arr3,arr3.length);
+        System.out.println(Arrays.toString(arr5));
     }
 
 
@@ -99,6 +108,31 @@ public class ex1 {
             }
         }
         return s_absolute;
+    }
+
+
+    // Ex5
+    /*
+     Sorting an array int complexity of O(n) --> the idea is to keep in the loop and not to create another one,
+     so we're updating the loop runner ('i') after getting in the condition to start again
+     Based from https://www.geeksforgeeks.org/how-to-sort-an-array-in-a-single-loop/
+    */
+    public static void sort(int arr[]) {
+        for (int i = 0; i < arr.length-1; i++) {
+            if (arr[i] > arr[i + 1]) {
+                swap(arr,i, i+1);
+                i = -1; // so the loop begins from the start, and that way we are starting in the same loop,
+                        // but won't get in the condition from the previous iteration.
+                        // its need to be -1, because -1<0, so we will start again
+            }
+        }
+    }
+
+    // outside function for help
+    public static void swap(int[] arr, int i, int j){
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
     }
 
 }
