@@ -20,6 +20,11 @@ public class ex1 {
         System.out.println(Arrays.toString(arr3));
         int[] arr5 = Arrays.copyOf(arr3,arr3.length);
         System.out.println(Arrays.toString(arr5));
+
+        int [] arr6 = {1,4,9,17,23,-1,14};
+        maxAbsolute(arr6);
+
+
     }
 
 
@@ -108,6 +113,29 @@ public class ex1 {
             }
         }
         return s_absolute;
+    }
+
+    // Ex4
+    /*
+     for this function we can sort it before and then the complexity will be according to the sort.
+     this function will be if we aren't sorting the array.
+     The biggest absolute value subtraction will be on the min and max values.
+     Complexity of O(n).
+    */
+    public static void maxAbsolute (int[] arr){
+        // lets assume the min value in the beginning and the max in the end. It may change according to what will happen
+        int min = arr[0]; // initializing the min to just random value, but from the array, because then it will be Zero, it is unnecessarily correct
+        int max = arr[arr.length-1];
+
+        for (int i = 0; i<arr.length-1; i++){
+            if(arr[i]<min){
+                min = arr[i]; // finding the min value in the array
+            }
+            if(arr[i]>max){
+                max = arr[i];
+            }
+        }
+        System.out.println("min= " + min + ", max= " + max);
     }
 
 
