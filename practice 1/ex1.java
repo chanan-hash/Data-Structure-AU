@@ -25,6 +25,8 @@ public class ex1 {
         maxAbsolute(arr6);
         maxAbsolute(arr3);
 
+        System.out.println(sumZero(arr6));
+        System.out.println(sumZero(arr2));
     }
 
 
@@ -178,5 +180,37 @@ public class ex1 {
         arr[i] = arr[j];
         arr[j] = temp;
     }
+
+    // Ex6
+    /*
+
+   To find two number that the addition is Zero, meas they are opposite numbers
+    It is similar to binary search, but the condition is changing, and the complexity can be the whole array --> O(n)
+
+    this function with complexity of O(n^2) is easier -
+    1. one loop runs on the current value,
+    2. and the second loop on the values of the rest of the array
+
+     we can assume that the array is sorted by ascending order --> that why because it works a little bit like binary-search
+
+     By chatGpt: "The time complexity of this algorithm is O(n) because we only need to iterate through the array once."
+     */
+   public static boolean sumZero(int[] arr){
+            int left = 0;
+            int right = arr.length-1;
+            while (left<right) {
+              int sum = arr[left] + arr[right];
+                if(sum == 0){
+                    return true;
+                }
+                else if (sum > 0){ // means the number is big, and we need to go to the zero more
+                    right -=1;
+                }
+                else{              // The same way but the opposite
+                    left += 1;
+                }
+            }
+       return false;
+   }
 
 }

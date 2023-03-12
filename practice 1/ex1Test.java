@@ -44,4 +44,16 @@ class ex1Test {
         Arrays.sort(arr4);
         assertArrayEquals(arr4, arr3);
     }
+
+    @Test
+    public void testEx6(){
+        int[] arr2 = {1, 4, 9, 17, 23, 0, 14};
+        int[] arr6 = {1,4,9,17,23,-1,14};
+
+        boolean is1 = ex1.sumZero(arr2);
+        boolean is2 = ex1.sumZero(arr6);
+
+        assertFalse(is1);
+        assertTrue(is2);
+    }
 }
