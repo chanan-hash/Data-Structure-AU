@@ -23,7 +23,7 @@ public class ex1 {
 
         int [] arr6 = {1,4,9,17,23,-1,14};
         maxAbsolute(arr6);
-
+        maxAbsolute(arr3);
 
     }
 
@@ -136,6 +136,22 @@ public class ex1 {
             }
         }
         System.out.println("min= " + min + ", max= " + max);
+    }
+
+    //The same function, but returning something for testing
+    public static int maxAbsolute2 (int[] arr){
+        int min = arr[0];
+        int max = arr[arr.length-1];
+
+        for (int i = 0; i<arr.length-1; i++){
+            if(arr[i]<min){
+                min = arr[i]; // finding the min value in the array
+            }
+            if(arr[i]>max){
+                max = arr[i];
+            }
+        }
+        return Math.abs(max-min);
     }
 
 
