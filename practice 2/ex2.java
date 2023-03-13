@@ -5,7 +5,7 @@ public class ex2 {
         double b = 6;
         System.out.println(sum(a, b));
         System.out.println(subtract(a, b));
-
+        System.out.println(subtract(b, a));
     }
 
     // Functions for ex1
