@@ -10,7 +10,10 @@ public class ex2 {
         System.out.println(mul(2.5, 2));
         System.out.println(div(10, 2));
 
-
+        System.out.println(remainder(6, 12));
+        System.out.println(remainder(12, 6.5));
+        System.out.println(remainder(28, 4));
+        System.out.println(remainder(4, 28));
     }
 
     // Functions for ex1
@@ -43,12 +46,19 @@ public class ex2 {
     // Division - according to this recursion formula "a/b = (a-b)/b+1, a/b = 0 a<b"
     // it returning hte integer of the division
     public static double div(double a, double b) {
-
         if (a < b) {
             return 0;
         } else {
             return div(a - b, b) + 1;
         }
+    }
+
+    // Remainder - according to this recursion formula "a%b = (a-b)%b , a&b = a, a<b"
+    public static double remainder(double a, double b) {
+        if (a<b){
+            return a;
+        }
+        return remainder(a-b,b);
     }
 
 }

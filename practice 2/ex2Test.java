@@ -18,6 +18,10 @@ class ex2Test {
         assertEquals(5,mul);
         assertEquals(5,div);
 
+        assertEquals(6,ex2.remainder(6,12));
+        assertEquals(5.5,ex2.remainder(12,6.5));
+        assertEquals(0,ex2.remainder(28,4));
+        assertEquals(4,ex2.remainder(4,28));
 
     }
 
