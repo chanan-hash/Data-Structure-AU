@@ -12,6 +12,8 @@ public class ex1 {
         smallAbsolute(arr);
         int[] arr2 = {1, 4, 9, 17, 23, 0, 14};
         smallAbsolute(arr2);
+        smallAbsolute3(arr2);
+
 
         int[] arr3 = {98, 2, 3, 1, 0, 0, 0, 3, 98, 98, 2, 2, 2, 0, 0, 0, 2};
         int[] arr4 = arr3.clone();
@@ -88,6 +90,7 @@ public class ex1 {
         return str;
     }
 
+
     // ex3
     // one way is to sort the array, but it not probably will help, complexity of O(n^2)
     public static void smallAbsolute(int[] arr) {
@@ -125,7 +128,28 @@ public class ex1 {
         return s_absolute;
     }
 
-    // Ex4
+    // ex3 with O(nlog(n)) + O(n) = O(n) complexity, by sorting the array first with the efficient sort (QuickSort)
+    /*
+       The complexity will be O(n), because after sorting we still have to go over the whole array to find the smallest sub-absolute
+       then we will search between to neighbor elements the smallest absolute subtraction.
+       because for each element it won't be further form it's neighbours
+    */
+    public static void smallAbsolute3(int[] arr) {
+        Arrays.sort(arr); // java's inbuilt sort is QuickSort (you can read in the class itself by Ctrl+clicking the mouse on the function)
+        int s_absolute = Math.abs(arr[0] - arr[1]);
+        int a1 = arr[0], a2 = arr[1]; // just for initializing
+        for (int i = 0; i< arr.length-1; i++){
+            if (Math.abs(arr[i]-arr[i+1])<s_absolute){
+                a1 = arr[i];
+                a2 = arr[i+1];
+                s_absolute = Math.abs(arr[i]-arr[i+1]);
+            }
+        }
+        System.out.println("a1= " + a1 + ", a2= " + a2);
+    }
+
+
+        // Ex4
     /*
      for this function we can sort it before and then the complexity will be according to the sort.
      this function will be if we aren't sorting the array.
