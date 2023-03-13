@@ -29,6 +29,14 @@ public class ex1 {
         System.out.println(sumZero(arr2));
     }
 
+    //ex1
+    /*
+    This function is working on the idea of quick-select
+     */
+
+//    public static int Nth (int[] arr){
+//
+//    }
 
     // ex2
     public static void regularity(String srr[]) {
