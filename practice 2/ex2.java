@@ -113,6 +113,7 @@ public class ex2 {
     }
 
     // The same function but by printing
+    // https://prepinsta.com/java-program/reversing-a-number-using-recursion/
     public static void reverseNum(int n) {
         if (n < 10) {
             System.out.print(n);
