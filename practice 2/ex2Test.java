@@ -32,7 +32,8 @@ class ex2Test {
         assertEquals(64, ex2.pow2(6));
 
         assertEquals(1234, ex2.reverse(4321));
-
+        String str = "zyxwv";
+        assertEquals("vwxyz", ex2.stringRev(str));
 
     }
 

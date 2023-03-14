@@ -1,5 +1,3 @@
-import org.w3c.dom.ls.LSOutput;
-
 public class ex2 {
 
     public static void main(String[] args) {
@@ -24,6 +22,9 @@ public class ex2 {
         System.out.println(pow2(3));
 
         System.out.println(reverse(314));
+
+        String str = "abcde";
+        System.out.println(stringRev(str));
 
     }
 
@@ -90,10 +91,21 @@ public class ex2 {
     public static int reverse(int n) {
         int rev = 0;
         while (n > 0) {
-            rev = (rev *10) + n%10 ;
+            rev = (rev * 10) + n % 10;
             n /= 10;
         }
         return rev;
     }
+
+
+    //Ex5
+    //Shai's function
+    public static String stringRev(String str) {
+        if (str.length() == 0) {
+            return "";
+        }
+        return str.charAt(str.length() - 1) + stringRev(str.substring(0, str.length() - 1));
+    }
+
 
 }
