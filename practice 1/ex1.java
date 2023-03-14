@@ -45,7 +45,7 @@ public class ex1 {
         String str = "";
         int count = 1;
         for (int i = 0; i < srr.length - 1; i++) {
-            if (srr[i].equals(srr[i + 1])) {
+            if (srr[i] == (srr[i + 1])) { // we can do also equals, it's not changing the complexity
                 count++;
                 // if the next iteration will be the last one, and the words are equal so we want to and the counter
                 if (i + 1 == srr.length - 1) {
