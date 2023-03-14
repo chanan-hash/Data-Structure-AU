@@ -23,6 +23,10 @@ public class ex2 {
 
         System.out.println(reverse(314));
 
+        System.out.println(reverseN(31456, 0));
+        reverseNum(123456);
+        System.out.println();
+
         String str = "abcde";
         System.out.println(stringRev(str));
 
@@ -98,6 +102,25 @@ public class ex2 {
     }
 
     //Ex4
+    // Lengnth need to be only zero
+    // https://www.codesansar.com/python-programming-examples/reverse-number-using-recursive-function.htm
+    public static int reverseN(int n, int zero) {
+        if (n == 0) {
+            return zero;
+        } else {
+            return reverseN(n / 10, zero * 10 + n % 10);
+        }
+    }
+
+    // The same function but by printing
+    public static void reverseNum(int n) {
+        if (n < 10) {
+            System.out.print(n);
+        } else {
+            System.out.print(n % 10);
+            reverseNum(n / 10);
+        }
+    }
 
 
     //Ex5
@@ -112,6 +135,5 @@ public class ex2 {
         }
         return str.charAt(str.length() - 1) + stringRev(str.substring(0, str.length() - 1));
     }
-
 
 }
