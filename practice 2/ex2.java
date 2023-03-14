@@ -97,9 +97,15 @@ public class ex2 {
         return rev;
     }
 
+    //Ex4
+
 
     //Ex5
-    //Shai's function
+    /*
+     Shai's function
+     we are returning an empty string, and adding it the string fronm the last place calling of hte recursion,
+     and working on the substring from the beginning till one before the end
+    */
     public static String stringRev(String str) {
         if (str.length() == 0) {
             return "";
