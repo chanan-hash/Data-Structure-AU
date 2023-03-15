@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class ex1 {
@@ -20,10 +21,10 @@ public class ex1 {
         System.out.println(Arrays.toString(arr4));
         sort(arr3);
         System.out.println(Arrays.toString(arr3));
-        int[] arr5 = Arrays.copyOf(arr3,arr3.length);
+        int[] arr5 = Arrays.copyOf(arr3, arr3.length);
         System.out.println(Arrays.toString(arr5));
 
-        int [] arr6 = {1,4,9,17,23,-1,14};
+        int[] arr6 = {1, 4, 9, 17, 23, -1, 14};
         maxAbsolute(arr6);
         maxAbsolute(arr3);
 
@@ -35,10 +36,31 @@ public class ex1 {
     /*
     This function is working on the idea of quick-select
      */
+    public static int Nth(int[] arr, int n) {
+        int counter = 0;
+        ArrayList<Integer> a = new ArrayList<>();
 
-//    public static int Nth (int[] arr){
-//
-//    }
+        while (counter < n){
+            // remove max value
+            counter++;
+        }
+        return arr[counter];
+    }
+
+    // returning the max value in an array
+    public static int maxArray(int[] arr) {
+        if (arr.length == 1) {
+            return arr[0];
+        }
+        int max = arr[0];
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] > max) {
+                max = arr[i];
+            }
+        }
+        return max;
+    }
+
 
     // ex2
     public static void regularity(String srr[]) {
@@ -138,34 +160,34 @@ public class ex1 {
         Arrays.sort(arr); // java's inbuilt sort is QuickSort (you can read in the class itself by Ctrl+clicking the mouse on the function)
         int s_absolute = Math.abs(arr[0] - arr[1]);
         int a1 = arr[0], a2 = arr[1]; // just for initializing
-        for (int i = 0; i< arr.length-1; i++){
-            if (Math.abs(arr[i]-arr[i+1])<s_absolute){
+        for (int i = 0; i < arr.length - 1; i++) {
+            if (Math.abs(arr[i] - arr[i + 1]) < s_absolute) {
                 a1 = arr[i];
-                a2 = arr[i+1];
-                s_absolute = Math.abs(arr[i]-arr[i+1]);
+                a2 = arr[i + 1];
+                s_absolute = Math.abs(arr[i] - arr[i + 1]);
             }
         }
         System.out.println("a1= " + a1 + ", a2= " + a2);
     }
 
 
-        // Ex4
+    // Ex4
     /*
      for this function we can sort it before and then the complexity will be according to the sort.
      this function will be if we aren't sorting the array.
      The biggest absolute value subtraction will be on the min and max values.
      Complexity of O(n).
     */
-    public static void maxAbsolute (int[] arr){
+    public static void maxAbsolute(int[] arr) {
         // lets assume the min value in the beginning and the max in the end. It may change according to what will happen
         int min = arr[0]; // initializing the min to just random value, but from the array, because then it will be Zero, it is unnecessarily correct
-        int max = arr[arr.length-1];
+        int max = arr[arr.length - 1];
 
-        for (int i = 0; i<arr.length-1; i++){
-            if(arr[i]<min){
+        for (int i = 0; i < arr.length - 1; i++) {
+            if (arr[i] < min) {
                 min = arr[i]; // finding the min value in the array
             }
-            if(arr[i]>max){
+            if (arr[i] > max) {
                 max = arr[i];
             }
         }
@@ -173,19 +195,19 @@ public class ex1 {
     }
 
     //The same function, but returning something for testing
-    public static int maxAbsolute2 (int[] arr){
+    public static int maxAbsolute2(int[] arr) {
         int min = arr[0];
-        int max = arr[arr.length-1];
+        int max = arr[arr.length - 1];
 
-        for (int i = 0; i<arr.length-1; i++){
-            if(arr[i]<min){
+        for (int i = 0; i < arr.length - 1; i++) {
+            if (arr[i] < min) {
                 min = arr[i]; // finding the min value in the array
             }
-            if(arr[i]>max){
+            if (arr[i] > max) {
                 max = arr[i];
             }
         }
-        return Math.abs(max-min);
+        return Math.abs(max - min);
     }
 
 
@@ -196,18 +218,18 @@ public class ex1 {
      Based from https://www.geeksforgeeks.org/how-to-sort-an-array-in-a-single-loop/
     */
     public static void sort(int arr[]) {
-        for (int i = 0; i < arr.length-1; i++) {
+        for (int i = 0; i < arr.length - 1; i++) {
             if (arr[i] > arr[i + 1]) {
-                swap(arr,i, i+1);
+                swap(arr, i, i + 1);
                 i = -1; // so the loop begins from the start, and that way we are starting in the same loop,
-                        // but won't get in the condition from the previous iteration.
-                        // its need to be -1, because -1<0, so we will start again
+                // but won't get in the condition from the previous iteration.
+                // its need to be -1, because -1<0, so we will start again
             }
         }
     }
 
     // outside function for help
-    public static void swap(int[] arr, int i, int j){
+    public static void swap(int[] arr, int i, int j) {
         int temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;
@@ -227,22 +249,20 @@ public class ex1 {
 
      By chatGpt: "The time complexity of this algorithm is O(n) because we only need to iterate through the array once."
      */
-   public static boolean sumZero(int[] arr){
-            int left = 0;
-            int right = arr.length-1;
-            while (left<right) {
-              int sum = arr[left] + arr[right];
-                if(sum == 0){
-                    return true;
-                }
-                else if (sum > 0){ // means the number is big, and we need to go to the zero more
-                    right -=1;
-                }
-                else{              // The same way but the opposite
-                    left += 1;
-                }
+    public static boolean sumZero(int[] arr) {
+        int left = 0;
+        int right = arr.length - 1;
+        while (left < right) {
+            int sum = arr[left] + arr[right];
+            if (sum == 0) {
+                return true;
+            } else if (sum > 0) { // means the number is big, and we need to go to the zero more
+                right -= 1;
+            } else {              // The same way but the opposite
+                left += 1;
             }
-       return false;
-   }
+        }
+        return false;
+    }
 
 }
