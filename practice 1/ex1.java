@@ -30,21 +30,35 @@ public class ex1 {
 
         System.out.println(sumZero(arr6));
         System.out.println(sumZero(arr2));
+
+        System.out.println(Nth(arr3, 3));
     }
 
     //ex1
     /*
     This function is working on the idea of quick-select
      */
-    public static int Nth(int[] arr, int n) {
-        int counter = 0;
-        ArrayList<Integer> a = new ArrayList<>();
 
-        while (counter < n){
-            // remove max value
-            counter++;
+    /*
+     The idea of this function is to check each value how much is bigger then the others,
+     and if it is equals to the N'th value we have wanted
+     Complexity of O(n^2)
+     need to fix if there are the two same value the counter will grow
+     this function work if the values are different  one from each other
+    */
+    public static int Nth(int[] arr, int n) {
+        for (int i = 0; i < arr.length; i++) {
+            int counter = 0;
+            for (int j = 0; j < arr.length; j++) {
+                if (arr[i] > arr[j]) {
+                    counter++;
+                }
+            }
+            if (counter == n) {
+                return arr[i];
+            }
         }
-        return arr[counter];
+        return -1;  // If we didn't find what we want
     }
 
     // returning the max value in an array
