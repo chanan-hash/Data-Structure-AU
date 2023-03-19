@@ -15,6 +15,10 @@ public class ex3 {
         int result = stringBinarySerach(srr, x);
         System.out.println(result);
 
+        System.out.println(isZero(arr));
+        System.out.println(isZero2(arr));
+
+
     }
 
 
@@ -97,7 +101,68 @@ public class ex3 {
     }
 
     // Ex4
+    // The function with complexity of O(n^2)
+    public static boolean isZero(int[] arr){
+        for(int i= 0; i< arr.length; i++){
+            for (int j = 0; j < arr.length; j++){
+                if(arr[i] + arr[j] == 0){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
+// The same function with complexity of O(n log(n))
+// if we want that the sum of two number will be zero, they will be 'a' and '-a', the opposite of the number
+// We will use binary search in every iteration
+    public static boolean isZero2(int[] arr){
+            for(int i= 0; i< arr.length; i++){
+            if(binarySreach(arr,-arr[i])  != -1){ // means there is the opposite number of it
+                return true;
+            }
+        }
+        return false;
+    }
 
+    // complexity O(n)
+ /*   public static boolean isZero3(int[] arr){
+        Set<Integer> set = new HashSet<>();
+        for (int num : arr) {
+            if (set.contains(-num)) {
+                return true;
+            }
+            set.add(num);
+        }
+        return false;
+    }
+*/
+
+    // Complexity O(n)
+    // simialr to the idea of ex2 in intro2cs, to find the root of a polynomial
+
+    /**
+     * If the sum is less than zero, we move the left pointer to the right to try to increase the sum.
+     * If the sum is greater than zero, we move the right pointer to the left to try to decrease the sum.
+     * If we reach the end of the while loop without finding a pair of numbers with zero sum, we return false.
+     * @param arr
+     * @return
+     */
+    public static boolean isZero4(int[]arr){
+        int left = 0;
+        int right = arr.length-1;
+        while (left<right){
+            int sum = arr[left] + arr[right];
+            if ( sum== 0){
+                return true;
+            } else if (sum > 0) {
+                right--; // means we are to high
+            }
+            else {
+                left++; // means we are low
+            }
+        }
+        return false;
+    }
 
 }

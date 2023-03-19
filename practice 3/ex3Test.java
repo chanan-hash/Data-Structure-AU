@@ -1,5 +1,7 @@
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ex3Test {
@@ -52,5 +54,43 @@ class ex3Test {
         assertArrayEquals(expected, actual);
     }
 
+    @Test
+    void testEx4() {
+
+        int[] arr1 = {1, 2, 3, 4, 5};
+        int[] arr2 = {-1, 2, 3, -4, 5};
+        int[] arr3 = {0, 1, 2, -2, -1};
+
+        // test isZero function
+        System.out.println(ex3.isZero(arr1)); // false
+        assertEquals(false, ex3.isZero(arr1));
+        System.out.println(ex3.isZero(arr2)); // false
+        assertEquals(false, ex3.isZero(arr2));
+        System.out.println(ex3.isZero(arr3)); // true
+        assertEquals(true, ex3.isZero(arr3));
+
+
+        // test isZero2 function
+        Arrays.sort(arr1);
+        Arrays.sort(arr2);
+        Arrays.sort(arr3);
+        System.out.println(ex3.isZero2(arr1)); // false
+        assertEquals(false, ex3.isZero2(arr1));
+        System.out.println(ex3.isZero2(arr2)); // false
+        assertEquals(false, ex3.isZero2(arr2));
+        System.out.println(ex3.isZero2(arr3)); // true
+        assertEquals(true, ex3.isZero2(arr3));
+
+        // test isZero4 function
+        Arrays.sort(arr1);
+        Arrays.sort(arr2);
+        Arrays.sort(arr3);
+        System.out.println(ex3.isZero4(arr1)); // false
+        assertEquals(false, ex3.isZero4(arr1));
+        System.out.println(ex3.isZero4(arr2)); // false
+        assertEquals(false, ex3.isZero4(arr2));
+        System.out.println(ex3.isZero4(arr3)); // true
+        assertEquals(true, ex3.isZero4(arr3));
+    }
 
 }
