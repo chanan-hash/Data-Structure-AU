@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 
 public class ex3 {
     public static void main(String[] args) {
@@ -18,6 +19,36 @@ public class ex3 {
         System.out.println(isZero(arr));
         System.out.println(isZero2(arr));
 
+
+        int[] arr1 = {1, 1, 2, 2, 2, 3, 3, 3, 3, 3, 3};
+        int[] arr2 = {1, 1, 2, 2, 3, 3, 4, 4};
+        int[] arr3 = {1, 2, 3, 4, 5, 6, 7, 8};
+        int[] arr4 = {1, 1, 1, 1, 1, 1, 2, 2, 2};
+        int[] arr5 = {1, 1, 1, 1, 1};
+        int[] arr6 = {};
+        int[] arr7 = {1};
+        int[] arr8 = {1, 1};
+        int[] arr9 = {1, 2};
+
+//        System.out.println(moreThan(arr1));
+//        System.out.println(moreThan(arr2));
+//        System.out.println(moreThan(arr3));
+//        System.out.println(moreThan(arr4));
+//        System.out.println(moreThan(arr5));
+//        System.out.println(moreThan(arr6));
+//        System.out.println(moreThan(arr7));
+//        System.out.println(moreThan(arr8));
+//        System.out.println(moreThan(arr9));
+
+        moreThan(arr1);
+        moreThan(arr2);
+        moreThan(arr3);
+        moreThan(arr4);
+        moreThan(arr5);
+        moreThan(arr6);
+        moreThan(arr7);
+        moreThan(arr8);
+        moreThan(arr9);
 
     }
 
@@ -97,15 +128,15 @@ public class ex3 {
             }
         }
         // return (String[]) srr.toArray(); //need to be cast
-         return srr.toArray(new String[]{});
+        return srr.toArray(new String[]{});
     }
 
     // Ex4
     // The function with complexity of O(n^2)
-    public static boolean isZero(int[] arr){
-        for(int i= 0; i< arr.length; i++){
-            for (int j = 0; j < arr.length; j++){
-                if(arr[i] + arr[j] == 0){
+    public static boolean isZero(int[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr.length; j++) {
+                if (arr[i] + arr[j] == 0) {
                     return true;
                 }
             }
@@ -113,12 +144,12 @@ public class ex3 {
         return false;
     }
 
-// The same function with complexity of O(n log(n))
+    // The same function with complexity of O(n log(n))
 // if we want that the sum of two number will be zero, they will be 'a' and '-a', the opposite of the number
 // We will use binary search in every iteration
-    public static boolean isZero2(int[] arr){
-            for(int i= 0; i< arr.length; i++){
-            if(binarySreach(arr,-arr[i])  != -1){ // means there is the opposite number of it
+    public static boolean isZero2(int[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            if (binarySreach(arr, -arr[i]) != -1) { // means there is the opposite number of it
                 return true;
             }
         }
@@ -145,24 +176,62 @@ public class ex3 {
      * If the sum is less than zero, we move the left pointer to the right to try to increase the sum.
      * If the sum is greater than zero, we move the right pointer to the left to try to decrease the sum.
      * If we reach the end of the while loop without finding a pair of numbers with zero sum, we return false.
+     *
      * @param arr
      * @return
      */
-    public static boolean isZero4(int[]arr){
+    public static boolean isZero4(int[] arr) {
         int left = 0;
-        int right = arr.length-1;
-        while (left<right){
+        int right = arr.length - 1;
+        while (left < right) {
             int sum = arr[left] + arr[right];
-            if ( sum== 0){
+            if (sum == 0) {
                 return true;
             } else if (sum > 0) {
                 right--; // means we are to high
-            }
-            else {
+            } else {
                 left++; // means we are low
             }
         }
         return false;
     }
 
+    // Ex5
+
+//    public static int moreThan(int[] arr) {
+//
+//        int N = arr.length;
+//
+//        for (int i = 0; i < N/2; i++) {
+//            if (arr[i] == arr[i + (N / 2)]) { // if from the index till the index + N / 2, is the same value, so it means the value is appearing more than N/2, time,
+//                // We can say it only because the array is sorted, so we know there is no other element
+//                return arr[i];
+//            }
+//        }
+//        if (arr.length % 2 == 1 && arr[arr.length / 2] == arr[arr.length - 1]) { // if the length is an odd number,
+//            // and from half of the array till the end is the same value so return it,
+//            // it's for not going out of the array
+//            return arr[arr.length - 1];
+//        }
+//        throw new NoSuchElementException("NO such element"); // If we'll get an exception like this, means we've got till the end of the array and didn't find any element,
+//        // and in the next iteration we'll get arrayOutOfBound
+//
+//    }
+
+    // from eyal's levi github
+    // https://github.com/LeviEyal/DataStructuresCourse/blob/master/leead_exsercises/src/%D7%AA%D7%99%D7%A8%D7%92%D7%95%D7%9C%D7%99%D7%9D/ex3.java
+public static void moreThan(int a[]){
+    int n = a.length;
+    for(int i=0; i<n/2; i++)
+        if(a[i] == a[i+n/2]){
+            System.out.println(a[i]);
+            return;
+        }
+    System.out.println("not found");
 }
+}
+
+
+
+
+
