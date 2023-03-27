@@ -16,7 +16,7 @@ public class Ex1 {
         int index1 = firstIndex(a, 0, a.length-1, k);
         int index2 = lastIndex(a, k);
         if ((index1 == -1) || (index2 == -1)) {
-            return -1;          // means k is not in the array
+            return 0;          // means k is not in the array
         }
         return index2 - index1 + 1;
     }
