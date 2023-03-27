@@ -55,7 +55,7 @@ class ex3Test {
     }
 
     @Test
-    void testEx4() {
+    void testEx4_5_6() {
 
         int[] arr1 = {1, 2, 3, 4, 5};
         int[] arr2 = {-1, 2, 3, -4, 5};
@@ -91,6 +91,15 @@ class ex3Test {
         assertEquals(false, ex3.isZero4(arr2));
         System.out.println(ex3.isZero4(arr3)); // true
         assertEquals(true, ex3.isZero4(arr3));
+
+        int a6[] = {1, 2, 4, 6, 7, 8, 9, 10, 11, 12};
+        int index = ex3.binarySearchBetween(a6, 5);
+        int index2 = ex3.binarySearchBetween(a6, 20);
+        assertEquals(3, index);
+        assertEquals(6,a6[index]);
+        assertEquals(-1, index2);
+
+
     }
 
 }

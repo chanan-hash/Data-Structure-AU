@@ -50,6 +50,9 @@ public class ex3 {
         moreThan(arr8);
         moreThan(arr9);
 
+        System.out.println();
+        int a6[] = {1,2,4,6,7,8,9,10,11,12};
+        System.out.println(binarySearchBetween(a6, 5) + " and the value is: " + a6[binarySearchBetween(a6, 5)]);
     }
 
 
@@ -220,18 +223,42 @@ public class ex3 {
 
     // from eyal's levi github
     // https://github.com/LeviEyal/DataStructuresCourse/blob/master/leead_exsercises/src/%D7%AA%D7%99%D7%A8%D7%92%D7%95%D7%9C%D7%99%D7%9D/ex3.java
-public static void moreThan(int a[]){
-    int n = a.length;
-    for(int i=0; i<n/2; i++)
-        if(a[i] == a[i+n/2]){
-            System.out.println(a[i]);
-            return;
+    public static void moreThan(int a[]) {
+        int n = a.length;
+        for (int i = 0; i < n / 2; i++)
+            if (a[i] == a[i + n / 2]) {
+                System.out.println(a[i]);
+                return;
+            }
+        System.out.println("not found");
+    }
+
+    // Ex6
+    /*
+     This function is based on binary search but with an addition to the condition
+     this function is the casing for our function
+     we need first a recursive binary search with the condition for the answer
+     complexity of O(log(n))
+    */
+    public static int binarySearchBetween(int arr[], int value) {
+            return binarySearchBetween2(arr, 0, arr.length-1,value);
+    }
+
+    public static int binarySearchBetween2(int[] arr, int low, int high, int value) {
+        if(low>high) {
+            return -1;
         }
-    System.out.println("not found");
+        int mid = (low + high) / 2;
+        if (value == arr[mid] || (value > arr[mid-1] && value < arr[mid])) {
+            return mid;
+        } else if (value > arr[mid]) {
+            return binarySearchBetween2(arr, mid+1, high,value);
+        }
+        else {
+            return binarySearchBetween2(arr,low, mid-1,value);
+        }
+
+
+    }
+
 }
-}
-
-
-
-
-
