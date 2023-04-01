@@ -39,10 +39,14 @@ public class QuickSort {
 
 
     public static void main(String[] args) {
+        // https://www.programiz.com/java-programming/examples/quick-sort
+        // Another option for quick sort, when the pivot is starting form the highest index in the array
+
         int a[] = {7, 3, 9, 5, 4, 8, 1};
         quicksort(a);
         System.out.println(Arrays.toString(a));
     }
+
 
     public static void quickSort(int[] arr, int low, int high) {
         if (low < high) {
