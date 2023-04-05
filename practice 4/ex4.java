@@ -3,14 +3,27 @@ import java.util.Arrays;
 public class ex4 {
     public static void main(String[] args) {
 
-        int[] a = {1, 2, 3, 4, 5};
+        int[] a = {0, 1, 2, 3, 4};
         int[] b = {6, 7, 8};
         int[] c = merge(a, b);
 
         System.out.println(Arrays.toString(c));
 
-        int[] d = {-5,-4,-3,-2,-1,0};
-        System.out.println(Arrays.toString(merge3(a,b,d)));
+        int[] d = {-5, -4, -3, -2, -1, 0};
+        System.out.println(Arrays.toString(merge3(a, b, d)));
+        System.out.println();
+
+        int[] e = {1, 2, 3, 4, 5, 5};
+        System.out.println(indexSearch(a));
+        System.out.println(indexSearch(b));
+        System.out.println(e[5]);
+        System.out.println(indexSearch(e));
+        System.out.println();
+
+        System.out.println(indexIS2(a));
+        System.out.println(indexIS2(b));
+        System.out.println(indexIS2(e));
+
     }
 
 
@@ -68,5 +81,49 @@ public class ex4 {
 
 
     // Ex2
+    /*
+     * We need to find a number in ascending sorted array that also equals to its index, but in O(log(n)).
+     * When it's usually says O(log(n)), it means binary search.
+     */
+    public static boolean indexSearch(int[] arr) {
+        int low = 0;
+        int high = arr.length;
+
+        while (low < high) {
+
+            int mid = (low + high) / 2;
+            if (arr[mid] == mid) {
+                return true;
+            } else if (arr[mid] > mid) {
+                low = mid + 1;
+            } else { // arr[mid] < mid
+                high = mid - 1;
+            }
+        }
+        return false;
+    }
+
+    // now in recursive way
+
+    // lest create a wrapping function
+    public static boolean indexIS2(int[] a) {
+        return indexIS(a, 0, a.length - 1);
+    }
+
+    public static boolean indexIS(int[] a, int low, int high) {
+        if (low > high) { // here the stopping condition if we didn't find any number like that
+            return false;
+        }
+        int middle = (low + high) / 2;
+        if (a[middle] == middle) {     // another stopping condition
+            return true;
+        } else if (a[middle] > middle) {
+            return indexIS(a, middle + 1, high);
+        } else {
+            return indexIS(a, low, middle - 1);
+        }
+    }
+
+    // Ex3
 
 }
