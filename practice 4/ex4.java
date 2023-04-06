@@ -124,6 +124,38 @@ public class ex4 {
         }
     }
 
+
+    // we will sort the point using merge sort according to x values, and then we will go over the whole points array and search a point that is the opposite to the specific point
+    // because they are sorted we'll need to go over only once
+    // because of the merge sort it will be O(nlog(n))
+    // usually when it says O(nlog(n))  --> means mergesort or quicksort
     // Ex3
 
+    public static boolean fromZero(Point[] prr) {
+        mergeSortPoint(prr);
+        for (int i = 0; i < prr.length - 1; i++) {
+            if (prr[i].x() == -prr[i + 1].x() && prr[i].y() == -prr[i + 1].y()) {
+                return true;
+            }
+            return false;
+        }
+    }
+
+    private static void mergeSortPoint(Point[] prr) {
+        mergeSortPoint(prr, 0, prr.length - 1);
+    }
+
+    private static void mergeSortPoint(Point[] prr, int low, int high) {
+        if (low >= high) {
+            return;
+        }
+        int mid = (low + high) / 2;
+        mergeSortPoint(prr,0,mid);
+        mergeSortPoint(prr,mid+1,high);
+        merge2(prr,low,mid,high);
+    }
+
+    private static void merge2(Point[] prr, int low, int mid, int high) {
+
+    }
 }
