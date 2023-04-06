@@ -24,6 +24,22 @@ public class ex4 {
         System.out.println(indexIS2(b));
         System.out.println(indexIS2(e));
 
+        Point p1 = new Point(1, 2);
+        Point p2 = new Point(3, 4);
+        Point p3 = new Point(5, 6);
+        Point p4 = new Point(7, 8);
+        Point p5 = new Point(9, 10);
+        Point p6 = new Point(11, 12);
+        Point p7 = new Point(13, 14);
+        Point p8 = new Point(15, 16);
+        Point p9 = new Point(-1, -2);
+
+
+        Point[] prr = {p4, p6, p8, p1, p5, p2, p3, p7, p9};
+        System.out.println(Arrays.toString(prr));
+        mergeSortPoint(prr);
+        System.out.println(Arrays.toString(prr));
+        System.out.println(fromZero(prr));
     }
 
 
@@ -137,8 +153,8 @@ public class ex4 {
             if (prr[i].x() == -prr[i + 1].x() && prr[i].y() == -prr[i + 1].y()) {
                 return true;
             }
-            return false;
         }
+        return false;
     }
 
     private static void mergeSortPoint(Point[] prr) {
@@ -150,12 +166,54 @@ public class ex4 {
             return;
         }
         int mid = (low + high) / 2;
-        mergeSortPoint(prr,0,mid);
-        mergeSortPoint(prr,mid+1,high);
-        merge2(prr,low,mid,high);
+        mergeSortPoint(prr, 0, mid);
+        mergeSortPoint(prr, mid + 1, high);
+        merge2(prr, low, mid, high);
     }
 
-    private static void merge2(Point[] prr, int low, int mid, int high) {
+    // sorting a point array according to x values
+//    private static void merge2(Point[] prr, int low, int mid, int high) {
+//        Point[] ptemp = new Point[high - low + 1]; // the new size of the temp array
+//        int i = low, j = mid + 1, k = 0;
+//        while (low <= mid && j <= high) {
+//            if (Math.abs(prr[i].x()) < Math.abs(prr[j].x())) {
+//                ptemp[k++] = prr[i++];
+//            } else {
+//                ptemp[k++] = prr[j++];
+//            }
+//        }
+//        // adding the rest of the values
+//        while (i <= mid) {
+//            ptemp[k++] = prr[i++];
+//        }
+//        while (j <= high) {
+//            ptemp[k++] = prr[j++];
+//        }
+//        // copying the temp sorted array to the original array
+//        for (int t = 0; t < ptemp.length; t++) {
+//            prr[t + low] = ptemp[t];
+//        }
+//
+//    }
 
+    // was contributed from  eyal's levi github, https://github.com/LeviEyal/DataStructuresCourse/blob/master/leead_exsercises/src/%D7%AA%D7%99%D7%A8%D7%92%D7%95%D7%9C%D7%99%D7%9D/ex4.java
+    private static void merge2(Point[] a, int l, int m, int h) {
+        Point t[] = new Point[h-l+1];
+        int i=l, j=m+1;
+        int k=0;
+        while(i<=m && j<=h){
+            if(Math.abs(a[i].x())<Math.abs(a[j].x())) // we want the sort in abs, because it just for the calculating after it, and can save time
+                                                      // but we can sort it regularly and then to check as we've done
+                t[k++]=a[i++];
+            else            t[k++]=a[j++];
+        }
+        while(i<=m)     t[k++]=a[i++];
+        while(j<=h)     t[k++]=a[j++];
+        //copy from t to a
+        for(i=0; i<t.length; i++)
+            a[l+i]=t[i];
     }
+
+
+    
 }
