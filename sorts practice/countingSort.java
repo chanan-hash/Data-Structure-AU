@@ -35,10 +35,18 @@ public class countingSort {
      */
     public static void main(String[] args) {
 
-        int[] arr = {2,3,4,4,5,2,7,9,8,7,9,0,0,0,2,8};
+        int[] arr = {2, 3, 4, 4, 5, 2, 7, 9, -1, 8, 7, 9, 0, 0, 0, 2, 8};
+        int[] arr2 = {2, 3, 4, 4, 5,-1, 2, 9, 8, 4,-1, 11, 10, 0, 0, 0, 2, 8};
+
         System.out.println(Arrays.toString(arr));
         countin_Sort(arr);
         System.out.println(Arrays.toString(arr));
+
+        System.out.println();
+        System.out.println(Arrays.toString(arr2));
+        cumulativeFrequency(arr2);
+        System.out.println(Arrays.toString(arr2));
+
     }
 
     // Regular counting sort
@@ -46,15 +54,19 @@ public class countingSort {
         /** finding max and min, for range **/
         int max = arr[0], min = arr[0]; // lest asune they are in the beginning just for initializing
         for (int i = 0; i < arr.length; i++) {  // O(n)
-            if (arr[i] > max){max = arr[i];} // O(1)
-            if (arr[i] < min){min = arr[i];} // O(1)
+            if (arr[i] > max) {
+                max = arr[i];
+            } // O(1)
+            if (arr[i] < min) {
+                min = arr[i];
+            } // O(1)
         }
 
         int range = max - min + 1;
         /** creating count/frequency array, for each element **/
-        int[] count = new int[range];
-        for(int j = 0; j<arr.length; j++ ){
-            count[arr[j]-min]++;
+        int[] count = new int[range]; // O(n)
+        for (int j = 0; j < arr.length; j++) {
+            count[arr[j] - min]++;
         }
         /** sorting the original array, according to the counting array **/
         // Notice!!!! not every nested loop is multiplication of thew 2 sizes,
@@ -62,12 +74,46 @@ public class countingSort {
         // if we aren't going for each element into the second array, we are adding the sizes
         // here we don't know for each element if we are going into the second loop, it depends on if that number was in the original array, and not just an index
         int k = 0;
-        for(int l = 0; l< count.length; l++){ // O(n + range)
-            for (int h = 0; h <  count[l]; h++){ // in each iteration if it is happening we are going again till the place in the counting array,
-                                                 // and putting the number we've counted, according to the min + index
+        for (int l = 0; l < count.length; l++) { // O(n + range)
+            for (int h = 0; h < count[l]; h++) { // in each iteration if it is happening we are going again till the place in the counting array,
+                // and putting the number we've counted, according to the min + index
                 arr[k++] = min + l;
             }
         }
+    }
+
+
+    // Cumulative frequency counting sort
+    public static void cumulativeFrequency(int[] a) {
+        /** The beginning is similar **/
+        // finding the min and max
+        int min = a[0], max = a[0];
+        for (int i = 0; i < a.length; i++) { // O(n)
+            if (a[i] > max) {
+                max = a[i];
+            } // O(1)
+            if (a[i] < min) {
+                min = a[i];
+            } // O(1)
+        }
+        // making hte count array for each element
+        int size = max - min + 1;
+        int[] couting = new int[size];
+        for (int j = 0; j < a.length; j++) { // O(n)
+            couting[a[j] - min]++; // counting according to the size/range
+        }
+
+        // The cumulative frequency, the only difference
+        for (int k = 1; k < size; k++) {
+            couting[k] = couting[k] + couting[k - 1];
+        }
+
+        for (int i = 0, j = 0; j < size; j++) {
+            while (i < couting[j]) {
+                a[i++] = j + min;
+            }
+        }
+
     }
 
 }
