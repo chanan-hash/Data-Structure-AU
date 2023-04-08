@@ -40,6 +40,10 @@ public class ex4 {
         mergeSortPoint(prr);
         System.out.println(Arrays.toString(prr));
         System.out.println(fromZero(prr));
+
+        System.out.println(isEqualToA(e,6));
+        System.out.println(isEqualToA(e,11));
+
     }
 
 
@@ -198,22 +202,40 @@ public class ex4 {
 
     // was contributed from  eyal's levi github, https://github.com/LeviEyal/DataStructuresCourse/blob/master/leead_exsercises/src/%D7%AA%D7%99%D7%A8%D7%92%D7%95%D7%9C%D7%99%D7%9D/ex4.java
     private static void merge2(Point[] a, int l, int m, int h) {
-        Point t[] = new Point[h-l+1];
-        int i=l, j=m+1;
-        int k=0;
-        while(i<=m && j<=h){
-            if(Math.abs(a[i].x())<Math.abs(a[j].x())) // we want the sort in abs, because it just for the calculating after it, and can save time
-                                                      // but we can sort it regularly and then to check as we've done
-                t[k++]=a[i++];
-            else            t[k++]=a[j++];
+        Point t[] = new Point[h - l + 1];
+        int i = l, j = m + 1;
+        int k = 0;
+        while (i <= m && j <= h) {
+            if (Math.abs(a[i].x()) < Math.abs(a[j].x())) // we want the sort in abs, because it just for the calculating after it, and can save time
+                // but we can sort it regularly and then to check as we've done
+                t[k++] = a[i++];
+            else t[k++] = a[j++];
         }
-        while(i<=m)     t[k++]=a[i++];
-        while(j<=h)     t[k++]=a[j++];
+        while (i <= m) t[k++] = a[i++];
+        while (j <= h) t[k++] = a[j++];
         //copy from t to a
-        for(i=0; i<t.length; i++)
-            a[l+i]=t[i];
+        for (i = 0; i < t.length; i++)
+            a[l + i] = t[i];
     }
 
+    // Ex4
+    // finding to values the equal to 'a' value in sorted array and with complexity of O(n)
+    // To do it we will initial two pointers and while they're different we will continue checking
+    public static boolean isEqualToA(int [] array, int a){
+            int l = 0, r = array.length-1;
+            while (l<r){
+                if(array[l] + array[r] == a){
+                    return true;
+                } else if (array[l] + array[r] < a) {
+                    l++;
+                }
+                else {
+                    r--;
+                }
+            }
+            return false; // we haven't found numbers like that
+    }
 
+    // Ex5
 
 }
