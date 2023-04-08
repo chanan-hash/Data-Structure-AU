@@ -16,6 +16,11 @@ public class countingSort {
      * Complexity - O(n + range), because of the last loop
      */
 
+
+    // Some making the new counting array according to the index of the range, so it easy to restore the and sort the original array
+    // But the problem with it instead finding the range, if we have numbers 80-100, so to do index array from 0-100, can be waste if sotrage memory
+    // But with the range will have only maximum 20 places in the counting array
+
     /*
     // The pseudo-code https://www.programiz.com/dsa/counting-sort
     // different from the elizabet's algorithm
