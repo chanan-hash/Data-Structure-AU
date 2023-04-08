@@ -41,9 +41,19 @@ public class ex4 {
         System.out.println(Arrays.toString(prr));
         System.out.println(fromZero(prr));
 
-        System.out.println(isEqualToA(e,6));
-        System.out.println(isEqualToA(e,11));
+        System.out.println(isEqualToA(e, 6));
+        System.out.println(isEqualToA(e, 11));
 
+        int[] a4 = {2, 6, 3, 8, 3, 9, 3, 55, 7, 223, 9};
+        mergesort(a4);
+        System.out.println(Arrays.toString(a4));
+
+        System.out.println(Arrays.toString(intersection(d, e)));
+        System.out.println(Arrays.toString(intersection(e, a4)));
+        int[] a5 = {1, 4, 2, 5, 6};
+        System.out.println(Arrays.toString(intersection(e, a5)));
+        System.out.println(Arrays.toString(intersection(e, e)));
+        
     }
 
 
@@ -221,21 +231,83 @@ public class ex4 {
     // Ex4
     // finding to values the equal to 'a' value in sorted array and with complexity of O(n)
     // To do it we will initial two pointers and while they're different we will continue checking
-    public static boolean isEqualToA(int [] array, int a){
-            int l = 0, r = array.length-1;
-            while (l<r){
-                if(array[l] + array[r] == a){
-                    return true;
-                } else if (array[l] + array[r] < a) {
-                    l++;
-                }
-                else {
-                    r--;
-                }
+    public static boolean isEqualToA(int[] array, int a) {
+        int l = 0, r = array.length - 1;
+        while (l < r) {
+            if (array[l] + array[r] == a) {
+                return true;
+            } else if (array[l] + array[r] < a) {
+                l++;
+            } else {
+                r--;
             }
-            return false; // we haven't found numbers like that
+        }
+        return false; // we haven't found numbers like that
     }
 
     // Ex5
+    // the function gets to equal length arrays, and returning an intersection array by O(nlog(n))
+    public static int[] intersection(int[] a1, int[] a2) {
+        // Starting by sorting the two arrays with merge sort, it can be also with quicksort
+        mergesort(a1); // O(nlog(n))
+        mergesort(a2); // O(nlog(n))
+        int i = 0, j = 0, counter = 0;
+        int[] a3 = new int[a1.length];
+
+        while (i < a1.length && j < a2.length) { // O(n)
+            if (a1[i] == a2[j]) {
+                a3[counter++] = a1[i];
+                i++;
+                j++;
+            } else if (a1[i] < a2[j]) { // because they are sorted array, if some values is smaller than the other values in the same place,
+                // we need to move forward
+                i++;
+            } else { // a1[i] > a2[j]
+                j++;
+            }
+        }
+
+        return Arrays.copyOf(a3, counter); // O(n), copying only the values that in, and throwing out the empty places
+    }
+
+
+    public static void mergesort(int[] arr) {
+        mergeSort(arr, 0, arr.length - 1);
+    }
+
+    public static void mergeSort(int[] arr, int low, int high) {
+        if (low >= high) {
+            return;
+        }
+        int middle = (high + low) / 2;
+        mergeSort(arr, low, middle);
+        mergeSort(arr, middle + 1, high);
+        merge(arr, low, middle, high);
+    }
+
+    // contributed from eyal's levi github https://github.com/LeviEyal/DataStructuresCourse/blob/master/leead_exsercises/src/%D7%AA%D7%99%D7%A8%D7%92%D7%95%D7%9C%D7%99%D7%9D/ex4.java
+    public static void merge(int[] arr, int l, int m, int h) {
+        int[] arr2 = new int[h - l + 1];
+        int i = l, j = m + 1, k = 0;
+        while (i <= m && j <= h) {
+            if (arr[i] < arr[j]) {
+                arr2[k++] = arr[i++];
+            } else {
+                arr2[k++] = arr[j++];
+            }
+        }
+
+        while (i <= m) {
+            arr2[k++] = arr[i++];
+        }
+        while (j <= h) {
+            arr2[k++] = arr[j++];
+        }
+
+        //copy from t to a
+        for (i = 0; i < arr2.length; i++) {
+            arr[l + i] = arr2[i];
+        }
+    }
 
 }
