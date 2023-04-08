@@ -53,7 +53,9 @@ public class ex4 {
         int[] a5 = {1, 4, 2, 5, 6};
         System.out.println(Arrays.toString(intersection(e, a5)));
         System.out.println(Arrays.toString(intersection(e, e)));
-        
+        System.out.println(Arrays.toString(intersection2(e, e)));
+
+
     }
 
 
@@ -271,6 +273,22 @@ public class ex4 {
     }
 
 
+    //  Ex5 with binary search. searching each value in the second arraym and adding it to a new intersection array
+    public static int[] intersection2(int[] b1, int[] b2) {
+        mergesort(b1); // O(nlog(n))
+        mergesort(b2); // O(nlog(n))
+        int counter = 0;
+        int[] temp = new int[b2.length];
+        for (int i = temp.length-1; i >= 0; i--) { //O(nlog(n)). and descending order
+            if (binarySearch(b2, b1[i]) != -1) { // O(log(n))
+                temp[counter++] = b1[i]; // because they have the same value
+            }
+        }
+        return Arrays.copyOf(temp, counter); // O(n)
+    }
+
+
+    // ***** helping functions *****//
     public static void mergesort(int[] arr) {
         mergeSort(arr, 0, arr.length - 1);
     }
@@ -308,6 +326,22 @@ public class ex4 {
         for (i = 0; i < arr2.length; i++) {
             arr[l + i] = arr2[i];
         }
+    }
+
+    public static int binarySearch(int[] a, int k) {
+        int left = 0;
+        int right = a.length - 1;
+        while (left <= right) {
+            int mid = (left + right) / 2;
+            if (a[mid] == k) {
+                return mid; // the index we've found it
+            } else if (k > a[mid]) {
+                left = mid + 1;
+            } else {  // k < a[mid]
+                right = mid - 1;
+            }
+        }
+        return -1;
     }
 
 }
