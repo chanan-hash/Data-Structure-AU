@@ -10,6 +10,10 @@ public class raidxSort {
         System.out.println(Arrays.toString(brray));
     }
 
+    /**
+     * This radix sort is according to Lsd to Msd, because in that way is stays stable.
+     * If we're working the opposite sorting in descending order from MSD to LSD, it won't stay stable sort
+     */
     public static void radixsort(int[] a) {
         int max = a[0], exp = 1, base = 10;
         int[] temp = new int[a.length];
