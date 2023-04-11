@@ -2,6 +2,10 @@ public class Ex1 {
     public static void main(String[] args) {
         int[] arr = {-14, 1, 1, 1, 1, 2, 9, 15, 20};
         System.out.println(ones(arr, 1));
+        System.out.println(ones(arr, 8));
+        System.out.println(ones(arr, 15));
+
+
     }
 
 
@@ -13,8 +17,8 @@ public class Ex1 {
      */
 
     public static int ones(int[] a, int k) {
-        int index1 = firstIndex(a, 0, a.length-1, k);
-        int index2 = lastIndex(a, k);
+        int index1 = firstIndex(a, 0, a.length-1, k); // O(log(n))
+        int index2 = lastIndex(a, k);                       // O(log(n))
         if ((index1 == -1) || (index2 == -1)) {
             return 0;          // means k is not in the array
         }
