@@ -16,9 +16,18 @@ public class ex5 {
         evenOddSort(even_odd);
         System.out.println(Arrays.toString(even_odd));
 
-        int [] values2 = {1,6,1,6,6,1,6,1,1,6,6};
+        int[] values2 = {1, 6, 1, 6, 6, 1, 6, 1, 1, 6, 6};
         sort2values(values2);
         System.out.println(Arrays.toString(values2));
+
+
+        int a4[] = {3, 5, 6, 7, 8, 9, 12, 13, 14, 15};
+        int a5[] = {1,2,3,4,5,6,7,8,9,10};
+
+        System.out.println(binarySereachAdd3(a4));
+        System.out.println(binarySereachAdd3(a5));
+
+
     }
 
     // Ex1 even-odd sort
@@ -123,8 +132,7 @@ public class ex5 {
         while (l < h) { // O(n)
             if (a[l] > a[h]) {
                 swap(a, l++, h--); // swap and change the forward the index
-            }
-            else if (a[l] == min && a[h] == min) {
+            } else if (a[l] == min && a[h] == min) {
                 l++;
             } else if (a[l] == max && a[h] == max) {
                 h--;
@@ -141,25 +149,51 @@ public class ex5 {
     // Another way to do it, on actually the same idea, contributed by eyal's levi github
     // https://github.com/LeviEyal/DataStructuresCourse/blob/master/leead_exsercises/src/%D7%AA%D7%99%D7%A8%D7%92%D7%95%D7%9C%D7%99%D7%9D/ex5.java
     //Question 2: O(n) #Another option#
-    public static void q2_2(int a[]){
-        int max=a[0], min=a[0], countMax=0, countMin=0;
-        for(int i=0; i<a.length; i++){ // O(n), findig max and min values, there are only 2 values in the array
-            if(a[i]>max) max = a[i];
-            if(a[i]<min) min = a[i];
+    public static void q2_2(int a[]) {
+        int max = a[0], min = a[0], countMax = 0, countMin = 0;
+        for (int i = 0; i < a.length; i++) { // O(n), findig max and min values, there are only 2 values in the array
+            if (a[i] > max) max = a[i];
+            if (a[i] < min) min = a[i];
         }
         for (int element : a) { // O(n) counting max and min
-            if(element==max) countMax++;
-            if(element==min) countMin++;
+            if (element == max) countMax++;
+            if (element == min) countMin++;
         }
-        int k=0;
-        while(countMin-->0) a[k++]=min; // O(k), filing and changing/overriding the previous values in a[] from the start,
-                                        // till count min finishes with min value
-        while(countMax-->0) a[k++]=max; // O(k), from where k stopped, we're continuing filling the array with max values
+        int k = 0;
+        while (countMin-- > 0)
+            a[k++] = min; // O(k), filing and changing/overriding the previous values in a[] from the start,
+        // till count min finishes with min value
+        while (countMax-- > 0)
+            a[k++] = max; // O(k), from where k stopped, we're continuing filling the array with max values
 
         // the problem here we have 4 loop instead of 2 loop, although if with complexity it is O(n), but 4 loop against 2 its different
     }
 
     // Ex3
+
+
+    // Ex4
+    // Because it is kind of binary search so the complexity is O(log(n))
+    public static int binarySereachAdd3(int[] arr) {
+        // regular binary search, but the k value that we are looking is mid + 3
+        int left = 0, right = arr.length - 1;
+        while (left < right) {
+            int mid = (right + left) / 2;  // O(log(n))
+            if (arr[mid] == mid + 3) {
+                return arr[mid];
+            } else if (arr[mid] > mid + 3) {
+                left = mid + 1;
+            } else { // arr[mid] < mid + 3
+                right = mid - 1;
+            }
+        }
+
+        return arr[left] == left + 1 ? arr[left] : -111111; // means if we haven't found anything,
+                                                            // still need to figure why this is the condition
+    }
+
+    // Ex5
+
 
 }
 
