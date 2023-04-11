@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5c4285d3-bb99-4b07-8180-4fcb2eefad7a" name="Changes" comment="" />
+    <list default="true" id="5c4285d3-bb99-4b07-8180-4fcb2eefad7a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ex5.java" beforeDir="false" afterPath="$PROJECT_DIR$/ex5.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -33,7 +36,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/חנן/Desktop/java/Data-Structure-AU/Ex1",
+    "last_opened_file_path": "C:/Users/חנן/Desktop/java/Data-Structure-AU/practice 3",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -44,8 +47,9 @@
 }]]></component>
   <component name="RunManager">
     <configuration name="ex5" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="19" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="ex5" />
-      <module name="practice 5" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -65,7 +69,10 @@
       <option name="presentableId" value="Default" />
       <updated>1681015445182</updated>
       <workItem from="1681015446364" duration="6976000" />
-      <workItem from="1681168029789" duration="7839000" />
+      <workItem from="1681168029789" duration="7999000" />
+      <workItem from="1681212483600" duration="26000" />
+      <workItem from="1681212520354" duration="143000" />
+      <workItem from="1681212681932" duration="102000" />
     </task>
     <servers />
   </component>
