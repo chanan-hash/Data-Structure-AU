@@ -242,5 +242,8 @@ public class ex5 {
     }
 
     // Ex6
+    // we can use counting sort to make count array, and then to print evey cell once.
+    // the problem here that we are working with strings, and counting sort is based on Integers
+    // maybe we can use bucket sort or radix sort for this
 
 }
