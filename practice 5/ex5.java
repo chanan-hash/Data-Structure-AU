@@ -22,11 +22,18 @@ public class ex5 {
 
 
         int a4[] = {3, 5, 6, 7, 8, 9, 12, 13, 14, 15};
-        int a5[] = {1,2,3,4,5,6,7,8,9,10};
+        int a5[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
         System.out.println(binarySereachAdd3(a4));
         System.out.println(binarySereachAdd3(a5));
 
+        int a6[] = {1, 2, 5, 33, 55, 63, 42, 65, 234, 65, 124, 113, 51, 241, 7, 2, 34, 1};
+        int a7[] = Arrays.copyOf(a6, a6.length);
+        countingsort(a6, 255);
+        System.out.println(Arrays.toString(a6));
+        System.out.println(median(a6));
+        System.out.println(Arrays.toString(a7));
+        System.out.println(median2(a7));
 
     }
 
@@ -194,5 +201,46 @@ public class ex5 {
 
     // Ex5
 
+    // we can sort first the Array
+    public static int median(int[] arr) {
+        Arrays.sort(arr); // using quick sort. O(nlog(n);
+        return arr[arr.length / 2];
+    }
+
+    // because we know the range, we can use counting sort or radix sort and them the complexity will be less than O(nlog(n);
+    public static int median2(int arr[]) {
+        countingsort(arr, 255);
+        return arr[arr.length / 2];
+    }
+
+    public static void countingsort(int[] array, int bound) {
+        // if we don't have bound, we'll just find min amd max values
+        // finding first min ans max values0
+        //        int max = array[0], min = array[0];
+        //        for (int i = 0; i < array.length; i++) { // O(n)
+        //            if (array[i] > max) {
+        //                max = array[i];
+        //            }
+        //            if (array[i] < min){
+        //                min = array[i];
+        //            }
+        //        }
+
+        int[] countArray = new int[bound + 1]; // for zero 0-255 = 256 numbers
+        for (int i = 0; i < array.length; i++) {  // O(n)
+            countArray[array[i]]++; // counting array
+        }
+        // running on the range and according to this, filling the array
+        // Like May's algorithm for counting sort, that you are filling new array, from 0, till the range,
+        // and when we arrange back the count array is filii according to the whole range, and every number is in its own index
+
+        for (int i = 0, k = 0; i < countArray.length; i++) { // O(bound + 1)
+            for (int j = 0; j < countArray[i]; j++) {
+                array[k++] = i;
+            }
+        }
+    }
+
+    // Ex6
 
 }
