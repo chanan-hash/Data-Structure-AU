@@ -35,6 +35,10 @@ public class ex5 {
         System.out.println(Arrays.toString(a7));
         System.out.println(median2(a7));
 
+        String[] srr = {"to", "be", "or", "not", "to", "be" };
+        dedup(srr);
+        dedup2(srr);
+        dedup3(srr);
     }
 
     // Ex1 even-odd sort
@@ -245,5 +249,52 @@ public class ex5 {
     // we can use counting sort to make count array, and then to print evey cell once.
     // the problem here that we are working with strings, and counting sort is based on Integers
     // maybe we can use bucket sort or radix sort for this
+
+    // complexity O(n)
+    public static void dedup(String[] arr) {
+        Arrays.sort(arr); // Quick sort --> O(nlog(n))
+        String str = "";
+        for (int i = 0; i < arr.length - 1; i++) { // O(n)
+            if (arr[i] != arr[i + 1]) {
+                str += arr[i] + ", ";
+            }
+        }
+        if (!str.contains(arr[arr.length - 1])) { // O(n)
+            str += arr[arr.length - 1];
+        }
+        System.out.println(str);
+    }
+
+    // Complexity O(n^2)
+    public static void dedup2(String[] arr) {
+        String str = "";
+        for (int i = 0; i < arr.length; i++) { // O(n)
+            if (!str.contains(arr[i])) { // O(n)
+                str += " ," + arr[i];
+            }
+        }
+        System.out.println(str.substring(2, str.length())); // to cut of the first "," , can be also if it is the last,
+        // just to substring it forn the beginning till almost the and, str.length()-1
+    }
+
+    // O(n^2)
+    // eyal's levi idea, to use flag, important idea to know how to use it
+    public static void dedup3(String[] arr) {
+        boolean flag = false;
+        for (int i = 0; i < arr.length; i++) { // O(n)
+            flag = true;
+            for (int j = 0; j < i; j++) { // O(n), because of the last iteration i=arr.length, so it'll run till the end
+                if (arr[i].equals(arr[j])) {
+                    flag = false;
+                }
+            }
+            if (flag) { // flag == true
+                System.out.print(arr[i] + " "); // not println, only print, because we don't want to go line down
+            }
+
+
+        }
+    }
+
 
 }
