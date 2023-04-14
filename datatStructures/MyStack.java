@@ -1,7 +1,10 @@
+import java.util.StringTokenizer;
+
 public class MyStack { // for generic type stack we'll use ArrayList, it more suitable for this
     /**
      * This class represent a data structure of queue
      * Lifo = Last In First Out
+     * The moment we are limiting the size, and have a pointer, the complexity of all functions are O(1)
      */
     final int MAX_SIZE = Integer.MAX_VALUE; // Allocates memory space, the max that the stack can hold
     // every time we are creating stack it will allocate that memory space
@@ -29,6 +32,7 @@ public class MyStack { // for generic type stack we'll use ArrayList, it more su
     }
 
     // This function taking out the last element that was put in
+    // O(1)
     public Integer pop() {
         Integer ans = null;
         if (current > 0) {
@@ -38,6 +42,7 @@ public class MyStack { // for generic type stack we'll use ArrayList, it more su
     }
 
     // Just showing the last element, but not taking it out from the stack
+    // O(1)
     public Integer top() { // we are doing it as an Integer and not int, because we want it as an object
         // if the stack is empty we want to return null, and not '0', because this is a value
 
@@ -49,17 +54,29 @@ public class MyStack { // for generic type stack we'll use ArrayList, it more su
     }
 
     // clearing the stack
+    // O(1)
     public void clear() {
         current = 0; // making the pointer as '0', so we won't be able to access any value in the stack,
                     // and if we'll try, we'll get null
     }
 
+    // O(1)
     public boolean isEmpty(){
         return (current == 0);
     }
 
+    // O(1)
     public int size() {
         return current; // because the size is the memory place
     }
-    
+
+    // O(n)
+    public String toString(){
+        String str = "";
+        for (int i = 0; i < current; i++) {
+            str += items[i] + ", ";
+        }
+        return str.substring(0,str.length()-2); // to take down the last "," and " "
+    }
+
 }
