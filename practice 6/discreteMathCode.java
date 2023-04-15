@@ -5,6 +5,12 @@ public class discreteMathCode {
         int sum1 = choose(10, 3) * choose(7, 2) * choose(3 + 2, 2); // n = 10, k = 3 , m = 2, h = 2
         int sum2 = sigmaSevenFour(10, 2, 3, 2);
         System.out.println("sum1= " + sum1 + ", sum2= " + sum2);
+
+        int threePowN = (int) Math.pow(3,4); // n = 4
+        int sigm2 = sigmaSevenThree(4);
+        int sigm3 = sigmaSevenThree2(4);
+        System.out.println("sum1= " + threePowN + ", sum2= " + sigm2 + ", sum3= " + sigm3);
+
     }
 
     public static int factorialRec(int n) {
@@ -28,6 +34,23 @@ public class discreteMathCode {
     }
 
 
+    // Ex1, ex7, 3
+    public static int sigmaSevenThree(int n) {
+        int sum = 0;
+        for (int i = 0; i <= n ; i++) {
+            sum += (choose(n,n-i) * Math.pow(2,n-i));
+        }
+        return sum;
+    }
+    public static int sigmaSevenThree2(int n) {
+        int sum = 0;
+        for (int i = 0; i <= n ; i++) {
+            sum += (choose(n,i) * Math.pow(2,i));
+        }
+        return sum;
+    }
+
+
     // Ex1, ex7 4
     public static int sigmaSevenFour(int n, int m, int k, int h) {
         int sum = 0;
@@ -36,4 +59,5 @@ public class discreteMathCode {
         }
         return sum;
     }
+
 }
