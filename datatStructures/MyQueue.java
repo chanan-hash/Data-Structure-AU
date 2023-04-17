@@ -34,6 +34,22 @@ public class MyQueue {
     }
 
 
+    // when we are using dequeue, after it finished we are returning the value we've removed.
+    // that how we know the function succeeded
+    public Integer dequeue() {
+        Integer ans;
+
+        if (isEmpty()) {
+            System.out.println("The queue is empty");
+            ans = null;
+        } else {
+            ans = data[front]; // first in first out
+            front = (front + size) % maxSize; // that how we won't leap out from the array, the modulo keeping us in
+            size--; // because we've removed one of the elements
+        }
+        return ans;
+    }
+
     // giving showing the first element, but not removing it
     public Integer peek() {
         Integer ans = null;
