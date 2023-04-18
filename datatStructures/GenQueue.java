@@ -48,4 +48,23 @@ public class GenQueue<T> {
         }
         return type;
     }
+
+    public int size(){
+        return queue.size();
+    }
+
+    // Form java's LinkedList class:
+    // "Retrieves, but does not remove, the head (first element) of this list."
+    // O(1)
+    public T peek(){
+        return queue.peek();
+    }
+
+    public boolean contains(T val){
+        return queue.contains(val); // O(n)
+    }
+
+    public void clear(){
+        queue.clear();;
+    }
 }
