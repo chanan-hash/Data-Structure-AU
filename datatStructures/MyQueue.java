@@ -1,7 +1,14 @@
 public class MyQueue {
-    // implementing queue with cycled array, means that the next value in the array is calculated by the formula-->
-    // i = (i + 1) % n, when 'i' is the index, and 'n' is the size of the array.
-    // array that calculated like this called cycled array
+    /** implementing queue with cycled array, means that the next value in the array is calculated by the formula-->
+     * i = (i + 1) % n, when 'i' is the index, and 'n' is the size of the array.
+     * array that calculated like this called cycled array
+     * In the cycled queue, we allocate the memory at the beginning and that it, we cant put values in the queue more than the maxSize
+     *
+     * The first way to implement queue is to keep the first index and last index, each time.
+     * The problem when we want to add or to remove value we need to move also all the queue values O(n)
+     * but the queue will be dynamic, and we don't need to allocate in the beginning place in the memory for the mexSize8
+     *
+     */
 
     // variables
     private int front = 0, tail = 0; // pointers for the queue, to decrease the complexity
