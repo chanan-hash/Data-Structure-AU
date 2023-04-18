@@ -1,5 +1,6 @@
 public class MyQueue {
-    /** implementing queue with cycled array, means that the next value in the array is calculated by the formula-->
+    /**
+     * implementing queue with cycled array, means that the next value in the array is calculated by the formula-->
      * i = (i + 1) % n, when 'i' is the index, and 'n' is the size of the array.
      * array that calculated like this called cycled array
      * In the cycled queue, we allocate the memory at the beginning and that it, we cant put values in the queue more than the maxSize
@@ -7,7 +8,6 @@ public class MyQueue {
      * The first way to implement queue is to keep the first index and last index, each time.
      * The problem when we want to add or to remove value we need to move also all the queue values O(n)
      * but the queue will be dynamic, and we don't need to allocate in the beginning place in the memory for the mexSize8
-     *
      */
 
     // variables
@@ -27,6 +27,7 @@ public class MyQueue {
 
 
     // functions
+    // O(1)
     public boolean enqueue(Integer value) {
         boolean ans = true;
         if (size == maxSize) {
@@ -43,6 +44,7 @@ public class MyQueue {
 
     // when we are using dequeue, after it finished we are returning the value we've removed.
     // that how we know the function succeeded
+    // O(1)
     public Integer dequeue() {
         Integer ans;
 
@@ -58,6 +60,7 @@ public class MyQueue {
     }
 
     // giving showing the first element, but not removing it
+    // O(1)
     public Integer peek() {
         Integer ans = null;
         if (isEmpty()) {
@@ -69,6 +72,7 @@ public class MyQueue {
         return ans;
     }
 
+    //O(n)
     public boolean contains(Integer val) {
         boolean res = false;
         for (int i = 0; i < size; i++) {
@@ -79,19 +83,21 @@ public class MyQueue {
         return res;
     }
 
+    // O(1)
     public boolean isEmpty() {
         return size == 0;
     }
 
+    // O(1)
     public int getSize() {
         return size;
     }
 
+    // O(1)
     public void clear() {
         size = 0;
         front = 0;
         this.tail = 0;
     }
-
 
 }
