@@ -8,7 +8,7 @@ public class Node<T> {
         this.data = data;
         this.next = next;
     }
-    
+
     // new node
     public Node(T data) {
         this.data = data;
