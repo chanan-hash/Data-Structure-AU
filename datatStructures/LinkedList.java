@@ -39,7 +39,51 @@ public class LinkedList<T> {
 
     // need to take care of 4 cases
     public T remove(T obj) {
-        return null;
+        T ans = null;
+
+        // if the list is empty
+        if (isEmpty()) { // if (head==null)
+            ans = null;
+        }
+        // if the object in the end
+        if (head.data.equals(obj)) {
+            ans = head.data; // keeping the value, to return if it has been removed
+            head = head.next; // forwarding the pointer of head to be the next one
+        }
+
+        // removing the element from last or mid.
+        // we'll need to run with 2 nodes, one for the previous node, and one for the next
+        // and the 2 nodes will help us to change the pointers, and with that we'll remove the required element
+        else {
+            Node<T> prev = head, forward = head.next;
+            while (forward.next != null && !forward.data.equals(obj)) { // while we still didn't find the object, and we are one before the end
+                prev = forward;
+                forward = forward.next;
+            }
+
+            // if we've got to the end, and the object in the last place
+            if (forward.next == null && forward.data.equals(obj)) {
+                ans = tail.data;
+                prev.next = null; // the next value will be null, and the garbage collector will erase it
+                tail = prev;
+                size--;
+            }
+
+            // removing from the mid
+            // if we've got here means we've found the object in the middle of th list,
+            // forward.next!=null but forward.data. = obj/ is equal to the object
+            if (forward.next != null) {
+                ans = forward.data;
+                prev.next = forward.next;
+                size--;
+            }
+
+            // element was not found
+            else {
+                ans = null;
+            }
+        }
+        return ans;
     }
 
     // O(n)
