@@ -101,5 +101,5 @@ public class Ex7MyQueue {
             return que[(pointer + index) % que.length];
         }
     }
-    
+
 }
