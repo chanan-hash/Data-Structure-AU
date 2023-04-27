@@ -38,21 +38,30 @@ public class Ex2_Queue {
             return null;
         } else {
             Integer ans = que[front];
-            front = (front + length) % que.length;
+            front = (front + 1) % que.length;
             length--;
             this.avg = ((avg * (length + 1)) - ans) / length; // restoring the sum of the values before dividing in the length,
             // subtracting form the sum the values that was dequeued,
             // and dividing by the new length
+
+            // we can do also
+            // if(ans == min || ans == max), for/while....and updating min/max values,
+            // but here, we will compare and update again sometimes max because we popped min (and the opposite)
+
+
+            // if we have removed the min value
             if (ans == this.min) {
+
                 for (int i = 0; i < length; i++) {
-                    min = Math.min(que[front + i] % que.length, min);
+                    min = Math.min(que[(front + i)%que.length] ,que[front]); // so we will compare only from what has remained in the queue
                 }
             }
+
+            // if we have removed the max value
             if (ans == max) {
                 for (int i = 0; i < length; i++) {
-                    max = Math.max(que[front + i] % que.length, max);
+                    max = Math.max(que[i],que[front]);
                 }
-
             }
             return ans;
         }
@@ -105,10 +114,12 @@ public class Ex2_Queue {
     public static void main(String[] args) {
         Ex2_Queue qu = new Ex2_Queue(6);
         qu.add(1);
+        qu.add(6);
         qu.add(2);
         qu.add(3);
         qu.add(4);
         System.out.println(qu.add(5));
+
         System.out.println(qu.getMax());
         System.out.println(qu.getMin());
         System.out.println(qu.getAvg());
@@ -116,10 +127,15 @@ public class Ex2_Queue {
         System.out.println(qu);
         System.out.println(qu.getLen());
 
-//        qu.remove();
-//        qu.remove();
-//        System.out.println(qu);
+        qu.remove();
 
+        System.out.println(qu.remove());
+        System.out.println(qu);
+
+        System.out.println(qu.getMax());
+        System.out.println(qu.getMin());
+        System.out.println(qu.getAvg());
+        System.out.println(qu.getLen());
     }
 
 }
