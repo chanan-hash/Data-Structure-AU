@@ -1,7 +1,7 @@
 public class Ex2_Queue {
 
     private int min = 0, length = 0, max = 0, front = 0, tail = 0;
-    private double avg = 0;
+    private double avg = 0, sum = 0;
 
     private int[] que;
 
@@ -9,10 +9,8 @@ public class Ex2_Queue {
     public Ex2_Queue(int capacity) {
         que = new int[capacity];
         this.front = 0;
-        this.tail = 0;
+        this.tail = -1;
         // initialize them with something from the queue
-        max = que[0];
-        min = que[0];
     }
 
     // O(1), adding to the que
@@ -20,11 +18,14 @@ public class Ex2_Queue {
         if (length == que.length) {
             return false;
         } else {
-            que[(front + 1) % que.length] = val;
+            que[(++tail) % que.length] = val; // ++tail, is increasing tail and then using it, tail++, using the tail ind then increasing
+            max = que[0]; // for the first adding it needs to be here
+            min = que[0];
             this.min = Math.min(this.min, val);
             this.max = Math.max(this.max, val);
             length++;
-            this.avg = (avg + val) / length; // we have updated the length before it
+            sum += val; // keeping the sum for calculating the average
+            this.avg = sum/length;
             return true;
         }
 
@@ -88,4 +89,38 @@ public class Ex2_Queue {
         return this.length;
     }
 
+    public String toString() {
+        if (length == 0) return "The Queue is empty";
+        int k = front;
+        String s = "The queue: [";
+        for (int i = 0; i < length-1; i++) {
+            k = (front + i) % que.length;
+            s += que[k] + ", ";
+        }
+        return s + "" + que[(tail)] + "]";
+    }
+
+
+    // checking the queue
+    public static void main(String[] args) {
+        Ex2_Queue qu = new Ex2_Queue(6);
+        qu.add(1);
+        qu.add(2);
+        qu.add(3);
+        qu.add(4);
+        System.out.println(qu.add(5));
+        System.out.println(qu.getMax());
+        System.out.println(qu.getMin());
+        System.out.println(qu.getAvg());
+
+        System.out.println(qu);
+        System.out.println(qu.getLen());
+
+//        qu.remove();
+//        qu.remove();
+//        System.out.println(qu);
+
+    }
+
 }
+
