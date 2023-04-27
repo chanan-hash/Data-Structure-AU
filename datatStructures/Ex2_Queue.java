@@ -11,6 +11,7 @@ public class Ex2_Queue {
         this.front = 0;
         this.tail = -1;
         // initialize them with something from the queue
+        max = que[front]; // for the first adding it needs to be here,
     }
 
     // O(1), adding to the que
@@ -19,13 +20,12 @@ public class Ex2_Queue {
             return false;
         } else {
             que[(++tail) % que.length] = val; // ++tail, is increasing tail and then using it, tail++, using the tail ind then increasing
-            max = que[0]; // for the first adding it needs to be here
-            min = que[0];
+            min = que[front]; // so it won't be Zero
             this.min = Math.min(this.min, val);
             this.max = Math.max(this.max, val);
             length++;
             sum += val; // keeping the sum for calculating the average
-            this.avg = sum/length;
+            this.avg = sum / length;
             return true;
         }
 
@@ -51,16 +51,17 @@ public class Ex2_Queue {
 
             // if we have removed the min value
             if (ans == this.min) {
-
-                for (int i = 0; i < length; i++) {
-                    min = Math.min(que[(front + i)%que.length] ,que[front]); // so we will compare only from what has remained in the queue
+                min = que[front]; // initializing new min value from the rest of the queue, do we can search again
+                for (int i = front; i < tail; i++) {
+                    min = Math.min(que[(front + i) % que.length], min); // so we will compare only from what has remained in the queue
                 }
             }
 
             // if we have removed the max value
-            if (ans == max) {
-                for (int i = 0; i < length; i++) {
-                    max = Math.max(que[i],que[front]);
+            else if (ans == max) {
+                max = que[front]; // initializing new max value from the rest of the queue, do we can search again
+                for (int i = front; i < tail; i++) {
+                    max = Math.max(que[(front + i) % que.length], max);
                 }
             }
             return ans;
@@ -102,7 +103,7 @@ public class Ex2_Queue {
         if (length == 0) return "The Queue is empty";
         int k = front;
         String s = "The queue: [";
-        for (int i = 0; i < length-1; i++) {
+        for (int i = 0; i < length - 1; i++) {
             k = (front + i) % que.length;
             s += que[k] + ", ";
         }
