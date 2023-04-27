@@ -43,10 +43,12 @@ public class ex6 {
         for (int i = 0; i < str.length(); i++) {
             char c = str.charAt(i);
             if (c == '(' || c == '[' || c == '{') { // checking if it is one of the brackets
-                stack.add(c);
+                stack.add(c); // the size of the stack will be n/2, because we'are adding only half of the brackets
             }
             if (c == ')' || c == ']' || c == '}') {
-                if (stack.isEmpty() || Math.abs(c - stack.pop()) > 2) { // need to understand, means there is a gap between the brackets
+                if (stack.isEmpty() || Math.abs(c - stack.pop()) > 2) { // if the stack isEmpty
+                                                // or the subtraction between the two brackets according to the ascii, is bigger than 2,
+                                                // means they are strange brackets
                     return false;
                 }
             }
