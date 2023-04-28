@@ -1,6 +1,6 @@
 public class BinaryTree<T> {
 
-    private BTNode<T> root; // rott htat as left and right options for node
+    private BTNode<T> root; // root that has left and right options for node
     int size;
 
     // constructor --> creating a new tree
@@ -10,10 +10,10 @@ public class BinaryTree<T> {
     }
 
 
-    public boolean contians(T obj, BTNode p) { // we can wrap it and make it that it gets only the object to checkd
+    public boolean contains(T obj, BTNode p) { // we can wrap it and make it that it gets only the object to checkd
         boolean ans = false;
         if (p != null) {
-            ans = (obj == root) || contians(obj, p.left) || contians(obj, p.right); // recursion move
+            ans = (obj == root) || contains(obj, p.left) || contains(obj, p.right); // recursion move
         }
         return ans;
     }
@@ -104,4 +104,59 @@ public class BinaryTree<T> {
         } // while we didn't find place the !flag will be true, and the loop will continue,
         // when we've added an element the flag will be true and !flag = false, and we'll go put of the loop
     }
+
+
+    public void printPreOrder() {
+        printPreOrder(root);
+        System.out.println();
+    }
+
+    // parent --> left --> right
+    public void printPreOrder(BTNode p) {
+        if (p != null) {
+            System.out.println(p.data + ", ");
+            printPreOrder(p.left); // moving left
+            printPreOrder(p.right); // moving right after we have finished lefts
+        }
+    }
+
+    // left --> parent --> right
+    public void printInorder() {
+        printInorder(root);
+        System.out.println();
+    }
+
+    public void printInorder(BTNode node) {
+        if (node != null) {
+            printInorder(node.left);
+            System.out.println(node.data + ", ");
+            printInorder(node.right);
+        }
+    }
+
+
+    public void printPostOrder() {
+        printPreOrder(root);
+        System.out.println();
+    }
+
+    // lrft --> right --> parent
+    public void printPostOrder(BTNode pn) {
+        printPostOrder(pn.left);
+        printPostOrder(pn.right);
+        System.out.println(pn.data + ", ");
+    }
+
+    // from elizabet Binary Tree class, printing preorder with adding from each node and side the data came
+    public void printPreorderPlus(){
+        printPreorderPlus("", root);
+    }
+    public void printPreorderPlus(String Path, BTNode node){
+        if (node != null){
+            System.out.println(node.data + ": " + Path);
+            printPreorderPlus(Path+"L", node.left);
+            printPreorderPlus(Path+"R", node.right);
+        }
+    }
+    
 }
