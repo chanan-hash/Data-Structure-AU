@@ -9,8 +9,47 @@ public class BinaryTree<T> {
         size = 0;
     }
 
-    // recursive add
 
+    public boolean contians(T obj, BTNode p) { // we can wrap it and make it that it gets only the object to checkd
+        boolean ans = false;
+        if (p != null) {
+            ans = (obj == root) || contians(obj, p.left) || contians(obj, p.right); // recursion move
+        }
+        return ans;
+    }
+
+    public boolean isEmpty() {
+        return this.root == null;
+    }
+
+    public int height(BTNode p) {
+        int h = 0;
+        if (p != null) {
+            int leftHeight = height(p.left);
+            int rightHeight = height(p.right);
+            h = Math.max(leftHeight, rightHeight) + 1;
+            // ans = (leftHeight > rightHeight ? leftHeight : rightHeight) + 1;
+        }
+        return h;
+    }
+
+    // counting the num of nodes in the tree
+    public int nodesNum() {
+        return nodesNum(root) - 1;
+    }
+
+    public int nodesNum(BTNode node) {
+        int ans = 1;
+        if (node == null) {
+            ans = 1;
+        } else {
+            ans = nodesNum(node.left) + nodesNum(node.right);
+        }
+        return ans;
+    }
+
+
+    // recursive add
     // wrapping function
     public void add(T obj) {
         root = add(obj, root);
