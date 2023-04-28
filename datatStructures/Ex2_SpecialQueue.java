@@ -38,7 +38,8 @@ public class Ex2_SpecialQueue {
                 min = Integer.MAX_VALUE; max = Integer.MIN_VALUE; // initializing them again
                 int i = 0; // need to be fixed
                 while (i < getLen()) {
-                    int temp = qu.poll(); // taking uot an element, checking if it is the min or max
+                    int temp = qu.poll(); // taking out
+                    // an element, checking if it is the min or max
                     if (temp < min) {
                         min = temp;
                     } else if (temp >= max) { //max = val > max ? val :max;
