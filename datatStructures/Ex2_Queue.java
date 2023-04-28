@@ -1,6 +1,9 @@
 public class Ex2_Queue {
 
-    private int min = 0, length = 0, max = 0, front = 0, tail = 0;
+    private int min = Integer.MAX_VALUE, length = 0, max = Integer.MIN_VALUE, front = 0, tail = 0;
+    // initialize them with something from the queue, min --> maxInteger, so evey number almost will be less than it
+    // and max --> minInteger, so every number will be bigger than it
+
     private double avg = 0, sum = 0;
 
     private int[] que;
@@ -10,8 +13,6 @@ public class Ex2_Queue {
         que = new int[capacity];
         this.front = 0;
         this.tail = -1;
-        // initialize them with something from the queue
-        max = que[front]; // for the first adding it needs to be here,
     }
 
     // O(1), adding to the que

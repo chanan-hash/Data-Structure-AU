@@ -3,7 +3,7 @@ import java.util.Queue;
 
 public class Ex2_SpecialQueue {
     // working the same as Ex2_Queue, but is built on implemented java's queue
-    private int min = 0, max = 0, length = 0;
+    private int min = Integer.MAX_VALUE, max = Integer.MIN_VALUE, length = 0;
     private double avg = 0, sum = 0;
     Queue<Integer> qu;
 
@@ -14,7 +14,7 @@ public class Ex2_SpecialQueue {
         min = Integer.MAX_VALUE; // so we can find a min value
     }
 
-    public boolean add(Integer val) {
+    public boolean addIN(Integer val) {
         length++;
         if (val < min) {
             min = val;
@@ -35,13 +35,16 @@ public class Ex2_SpecialQueue {
             sum -= ans;
             avg = (sum/length);
             if (ans == min || ans == max) {
+                min = Integer.MAX_VALUE; max = Integer.MIN_VALUE; // initializing them again
                 int i = 0; // need to be fixed
                 while (i < getLen()) {
-                    if (ans < min) {
-                        min = ans;
-                    } else if (ans >= max) { //max = val > max ? val :max;
-                        max = ans;
+                    int temp = qu.poll(); // taking uot an element, checking if it is the min or max
+                    if (temp < min) {
+                        min = temp;
+                    } else if (temp >= max) { //max = val > max ? val :max;
+                        max = temp;
                     }
+                    qu.add(temp); // adding it again. In the end of the loop we'll get the same queue as before, means we didn't change anything
                     i++;
                 }
             }
@@ -76,12 +79,12 @@ public class Ex2_SpecialQueue {
 
     public static void main(String[] args) {
         Ex2_SpecialQueue q = new Ex2_SpecialQueue();
-        q.add(1);
-        q.add(6);
-        q.add(2);
-        q.add(3);
-        q.add(4);
-        System.out.println(q.add(5));
+        q.addIN(1);
+        q.addIN(6);
+        q.addIN(2);
+        q.addIN(3);
+        q.addIN(4);
+        System.out.println(q.addIN(5));
         System.out.println(q);
 
         System.out.println(q.getMax());
