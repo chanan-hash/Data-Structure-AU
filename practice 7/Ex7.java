@@ -1,3 +1,6 @@
+import javax.print.DocFlavor;
+import javax.swing.*;
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class Ex7 {
@@ -18,6 +21,10 @@ public class Ex7 {
 //        System.out.println(palindrom2(s3)); //false
 //        System.out.println(palindrom2(s4)); //true
 
+
+        /* Testing question 5: */
+        Queue<Integer> q = sortedQueue(20);
+        System.out.println(q);
 
     }
 
@@ -49,7 +56,7 @@ public class Ex7 {
      * if the String length was even so we'll and each half,
      * if the string length is odd, so there'll be one character that wasn't added to any one, but it will be exactly in the middle so it equals to itself, and not effecting our checkup
      * we will check from the beginning till it, and from after it till the end
-     *
+     * <p>
      * notice!!!!!!!
      * This function logic won't work in this way (after debugging it)
      * if there are two Stack or two Queues, the same data-structures it will work.
@@ -63,7 +70,6 @@ public class Ex7 {
      * and will remain:
      * queue = 'b'
      * stack = 'a'
-     *
      */
     public static boolean palindrom2(String str) {
         Queue<Character> q = new LinkedList<>();
@@ -71,7 +77,7 @@ public class Ex7 {
         // O(n/2) --> although it equals to O(n), the logic behind is different, and can reduce the run time
         for (int i = 0; i < (str.length() / 2); i++) {
             q.add(str.charAt(i));
-            s.add(str.charAt(str.length() - i-1)); // adding form the end
+            s.add(str.charAt(str.length() - i - 1)); // adding form the end
         }
         while (!q.isEmpty()) {
             if (!q.poll().equals(s.pop())) {
@@ -82,4 +88,57 @@ public class Ex7 {
     }
 
     //Ex5
+    // We will randomize the number and add them to the array list, then will sort them by quick sort, then add them to the queue
+    public static Queue sortedQueue2(int size) {
+        Queue<Integer> que = new LinkedList<>();
+        ArrayList<Integer> arr = new ArrayList<>();
+        for (int i = 0; i < size; i++) { // O(size)
+            Random r = new Random();
+            int num = r.nextInt();
+            // int num = (int) Math.random() * 100; //number between 0 till 100
+            if (!arr.contains(num)) { // adding only if the number is not inside the array
+                arr.add(num);
+            } else {
+                boolean flag = false;
+                while (!flag) { // not always we will go in it, O(size), if we need to check the whole array, by contains function
+                    num = r.nextInt();//(int) Math.random() * 100; // need to grill a new number
+                    if (!arr.contains(num)) { // repeating as above, we are doing it twice because,maybe we won't have to go in the will
+                        arr.add(num);
+                        flag = true;
+                    } else {
+                        num = r.nextInt();//(int) Math.random() * 100;
+                    }
+                }
+            }
+        }
+        Arrays.sort(arr.toArray()); // O(nlog(n)) -->quicksort
+        for (int i = 0; i < arr.size(); i++) { // O(n) adding to the queue
+            que.add(arr.get(i));
+        }
+        return que;
+    }
+
+    // Eyal's levi solution
+    // https://github.com/LeviEyal/DataStructuresCourse/blob/master/leead_exsercises/src/%D7%AA%D7%99%D7%A8%D7%92%D7%95%D7%9C%D7%99%D7%9D/ex7.java
+    public static Queue<Integer> sortedQueue(int size) {
+        Queue<Integer> q = new LinkedList<>();
+        for (int i = 0; i < size; i++) {
+            int r = (int) (Math.random() * 100); //grilling a number
+            while (q.contains(r)) r = (int) (Math.random() * 100); // O(q.size())
+            q.add(r);
+            while (q.element() < r) q.add(q.remove()); // Retrieves, but does not remove, the head of this queue.
+            // This method differs from peek only in that it throws an exception if this queue is empty.
+            q.add(r);
+            while (q.element() > r)
+                q.add(q.remove()); // taking it out add adding it again in the end if the number is bigger,
+            // this will sort the queue
+            q.remove();
+        }
+        return q;
+    }
+//______________________________________________________
+
 }
+
+
+
