@@ -54,17 +54,33 @@ public class BTEx2<Double> {
 
     }
 
-    // O(1), the most way we can go it is O(10)/
-    // will go over the right sons and find the right range if it exists
+    // O(1), the most way we can go it is O(10)
+    // will go over the right sons and find the right range if it exists, and add it at the beginning
     public void add(Double dl) {
         if (root == null) {
             root = new BTNode<>(dl);
-        } else {
-
+        } else { // going on the right side of the tree and trying to find the ragne
+            BTNode p = root;
+            while (p!=null && (int)p.data < (int)p.right.data){
+                p = p.right;
+            }
+            if(p!=null){
+                addNode(p,dl); // fount where to put it
+            }
+            // need to take care on if this in the middle
         }
     }
 
-    // we will find the range if exits than, and printing the element
+    // adding a value on the range on the left side of a given node
+    public void addNode(BTNode range, Double d) {
+        BTNode newNode = new BTNode(d);
+        BTNode temp = range.left;
+        range.left = newNode;
+        newNode.left = temp;
+    }
+
+    // we will find the range if exits than, and printing the elements
+    // O(n) --> the size of the range
     public void printRange(Double range) {
         BTNode p = root;
         while (p != null && (int) p.data != (int) range) { // O(10)--> O(1)
@@ -78,10 +94,23 @@ public class BTEx2<Double> {
                 str += ", " + p.data;
             }
             System.out.println(str);
-        }
-        else {
+        } else {
             System.out.println("Range wasn't found");
         }
+    }
+
+    // running on the right side of the tree and counting how many ranges we have
+    //O(10) --> O(1)
+    public int countRanges() {
+        int count = 0;
+        if (root == null) { // the tree has no range
+            return 0;
+        } else {
+            for (BTNode p = root; p != null; p = p.right) {
+                count++;
+            }
+        }
+        return count;
     }
 
 
