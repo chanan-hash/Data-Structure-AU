@@ -23,7 +23,7 @@ public class BTEx2<Double> {
 
 
     // Date
-    private BTNode root;
+    private BTNode<Double> root;
     private int size;
 
     //constructors
@@ -35,18 +35,68 @@ public class BTEx2<Double> {
 
     // Removing a whole range in constant tome
     // O(1), because in the worst case we will go till the end of the range, it is O(10)
-    public BTNode removeRange(Double range) {
+    public void removeRange(Double range) {
         if (root == null) { // means there is no tree, it's empty
-            return null;
+            System.out.println("The tree is empty"); //return null;
+        } else { // we will go to the till we'll find the range and change the nodes
+            BTNode p = root;
+            BTNode n = null; // one that runs one step before p
+            for (p = root; p != null; n = p, p = p.right) {
+                if ((int) p.data == (int) range) {
+                    n = p.right;
+                    p = null;
+                }
+            }
+            if (p == null) { // means we haven't found the range
+                System.out.println("The range is not exists");
+            }
         }
-        else { // we will go to the till we'll find the range and change the nodes
+
+    }
+
+    // O(1), the most way we can go it is O(10)/
+    // will go over the right sons and find the right range if it exists
+    public void add(Double dl) {
+        if (root == null) {
+            root = new BTNode<>(dl);
+        } else {
 
         }
     }
 
-    // O(1), the most way we can
-    public void add(Double dl) {
+    // we will find the range if exits than, and printing the element
+    public void printRange(Double range) {
+        BTNode p = root;
+        while (p != null && (int) p.data != (int) range) { // O(10)--> O(1)
+            p = p.right;
+        }
 
+        if (p != null) { // if we've found the range
+            String str = "";
+            str += p.data;
+            for (p = p; p != null; p = p.left) { // running on the left side --> means the range
+                str += ", " + p.data;
+            }
+            System.out.println(str);
+        }
+        else {
+            System.out.println("Range wasn't found");
+        }
+    }
+
+
+    public void printPreOrder() {
+        printPreOrder(root);
+        System.out.println();
+    }
+
+    // parent --> left --> right
+    public void printPreOrder(BTNode<Double> p) {
+        if (p != null) {
+            System.out.println(p.data + ", ");
+            printPreOrder(p.left); // moving left
+            printPreOrder(p.right); // moving right after we have finished lefts
+        }
     }
 
 }
