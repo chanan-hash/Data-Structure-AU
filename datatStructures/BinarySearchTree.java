@@ -1,4 +1,4 @@
-public class BinarySearchTree {
+public class BinarySearchTree<T> {
     /**
      * In binary search tree the bigger element form the node is on the right side, and smaller in the left side
      */
@@ -39,5 +39,89 @@ public class BinarySearchTree {
         }
     }
 
+    /**
+     * In removing an element from search tree we have 4 cases to deal with
+     * <p>
+     * 1. The element was not found, we no things to delete
+     * 2. The element has no children is a leaf we need just to set it as a null
+     * 3. The element has only one child, is internal node --> we need to delete it and put his child instead of him
+     * 4. The element has two children so we cant just replace on of them instead, because that transformation can cause problems
+     *      in the sort down the tree. So we will want to move instead of the deleted element,
+     *      another element that will be bigger from the subRightTree, and smaller than the subLeftTree.
+     *      That element is or:
+     *          a. the smallest element on the subRightTree
+     *          b. the biggest element on the subLeftTree
+     */
 
+    public NodeSearch remove(NodeSearch p, Integer item) { // O(log(n))
+        if (p != null) {
+            if (item.compareTo(p.number) > 0) { // go right
+                p.right = remove(p.right, item); // recursion
+            } else if (item.compareTo(p.number) < 0) { // going left
+                p.left = remove(p.left, item);
+            } else { // the node we want to delete was not found, case (1)
+                if (p.left == null && p.right == null) { // the node is a leaf, case (2)
+                    p = null;
+                } else if (p.left != null && p.right == null) { // case (3), has only left child
+                    p = p.left; // going more left
+                } else if (p.left == null && p.right != null) { // has only right child
+                    p = p.right; // going more right
+                } else { // has two children
+                    if (p.right.left == null) { // his right node has only one child (right)
+                        p.right.left = p.left;
+                        p = p.right;
+                    } else { // removing the smallest element
+                        NodeSearch n = p.right;
+                        while (p.left.left != null) {
+                            p = p.left; // moving on the left side
+                        }
+                        n.number = p.left.number;
+                        p.left = p.left.right;
+                    }
+                }
+            }
+        }
+        return p;
+    }
+
+    public boolean search(Integer element) {
+        boolean ans = false;
+        NodeSearch node = root;
+        while (!ans && node != null) { // O(n)
+            if (element.equals(node.number)) {
+                ans = true;
+            } else if (element.compareTo(node.number) < 0) { // going left side
+                node = node.left;
+            } else {
+                node = node.right;
+            }
+        }
+        return ans;
+    }
+
+    public void printPreorderPlus() {
+        printPreorderPlus("", root);
+    }
+
+    public void printPreorderPlus(String Path, NodeSearch node) {
+        if (node != null) {
+            System.out.println(node.number + ": " + Path);
+            printPreorderPlus(Path + "L", node.left);
+            printPreorderPlus(Path + "R", node.right);
+        }
+    }
+
+    // if the tree is empty returns true
+    public boolean isEmpty() {
+        return this.root == null;
+    }
+
+    public int height() {
+        return height(root) - 1;
+    }
+
+    public int height(NodeSearch tree) {
+        if (tree == null) return 0;
+        return 1 + Math.max(height(tree.left), height(tree.right));
+    }
 }
