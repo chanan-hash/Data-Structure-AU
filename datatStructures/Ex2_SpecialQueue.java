@@ -15,12 +15,11 @@ public class Ex2_SpecialQueue {
     }
 
     public boolean addIN(Integer val) {
-        length++;
-        if (val < min) {
-            min = val;
-        } else if (val >= max) { //max = val > max ? val :max;
-            max = val;
-        }
+        length++; // we are allocating the length variable, and not using now the size function because we are adding at the end
+        // so we need to have a length variable
+        this.min = Math.min(min,val);
+        this.max = Math.max(max,val);
+
         sum += val;
         avg = (sum / length);
         return qu.add(val);
@@ -32,10 +31,13 @@ public class Ex2_SpecialQueue {
             ans = null;
         } else {
             ans = qu.poll();
+            length--;
             sum -= ans;
             avg = (sum/length);
             if (ans == min || ans == max) {
-                min = Integer.MAX_VALUE; max = Integer.MIN_VALUE; // initializing them again
+                max = qu.peek();
+                min = qu.peek();
+               // min = Integer.MAX_VALUE; max = Integer.MIN_VALUE; // initializing them again
                 int i = 0; // need to be fixed
                 while (i < getLen()) {
                     int temp = qu.poll(); // taking out
@@ -80,7 +82,7 @@ public class Ex2_SpecialQueue {
 
     public static void main(String[] args) {
         Ex2_SpecialQueue q = new Ex2_SpecialQueue();
-        q.addIN(1);
+        q.addIN(7);
         q.addIN(6);
         q.addIN(2);
         q.addIN(3);

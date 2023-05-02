@@ -128,4 +128,20 @@ public class BTEx2<Double> {
         }
     }
 
+
+    public static void main(String[] args) {
+        BTEx2 bt = new BTEx2<>();
+        bt.add(2.8);
+        bt.add(2.2);
+        bt.add(3.1);
+        bt.add(4.3);
+        bt.add(4.1);
+        bt.add(4.2);
+
+        bt.printPreOrder();
+
+    }
+
+
+
 }

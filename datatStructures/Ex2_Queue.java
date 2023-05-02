@@ -115,7 +115,8 @@ public class Ex2_Queue {
     // checking the queue
     public static void main(String[] args) {
         Ex2_Queue qu = new Ex2_Queue(6);
-        qu.add(1);
+//        qu.add(1);
+        qu.add(7);
         qu.add(6);
         qu.add(2);
         qu.add(3);
