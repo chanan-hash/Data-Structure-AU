@@ -5,8 +5,12 @@ public class ex6 {
         System.out.println(isBalanced("{[2*(6+7)]+4}*(3+2)"));
         System.out.println(isBalanced("{[2*(6+7)]+4})*(3+2)"));
         System.out.println(isBalanced("{[2*(6+7)]+4)*(3+2)"));
+        String str = "({()[]})";
+        String str2 = "([{";
 
-        System.out.println();
+        System.out.println(isBalanced(str));
+        System.out.println(isBalanced(str2));
+        System.out.println(str2.length() / 2);
 
         System.out.println(DecEqual("2435.5342")); // true
         System.out.println(DecEqual("2435.534"));  // false
@@ -41,14 +45,17 @@ public class ex6 {
     public static boolean isBalanced(String str) {
         Stack<Character> stack = new Stack<>();
         for (int i = 0; i < str.length(); i++) {
+            if (stack.size() > (str.length() / 2)) {
+                return false; //means there are too many opening brackets than closing ones
+            }
             char c = str.charAt(i);
             if (c == '(' || c == '[' || c == '{') { // checking if it is one of the brackets
                 stack.add(c); // the size of the stack will be n/2, because we'are adding only half of the brackets
             }
             if (c == ')' || c == ']' || c == '}') {
                 if (stack.isEmpty() || Math.abs(c - stack.pop()) > 2) { // if the stack isEmpty
-                                                // or the subtraction between the two brackets according to the ascii, is bigger than 2,
-                                                // means they are strange brackets
+                    // or the subtraction between the two brackets according to the ascii, is bigger than 2,
+                    // means they are strange brackets
                     return false;
                 }
             }
