@@ -49,10 +49,10 @@ public class ex6 {
                 return false; //means there are too many opening brackets than closing ones
             }
             char c = str.charAt(i);
-            if (c == '(' || c == '[' || c == '{') { // checking if it is one of the brackets
-                stack.add(c); // the size of the stack will be n/2, because we'are adding only half of the brackets
+            if (c == '<' || c == '(' || c == '[' || c == '{') { // checking if it is one of the brackets
+                stack.add(c); // the size of the stack will be n/2, because we're adding only half of the brackets
             }
-            if (c == ')' || c == ']' || c == '}') {
+            if (c == '>' || c == ')' || c == ']' || c == '}') {
                 if (stack.isEmpty() || Math.abs(c - stack.pop()) > 2) { // if the stack isEmpty
                     // or the subtraction between the two brackets according to the ascii, is bigger than 2,
                     // means they are strange brackets
