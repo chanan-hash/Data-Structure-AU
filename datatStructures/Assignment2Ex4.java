@@ -30,12 +30,14 @@ public class Assignment2Ex4 {
 
     // The ranges are representing by casting to int, and returning the range that was erased
     // O(1)
-    public Integer eraseRange(double range) {
+    public void eraseRange(double range) {
         if (arr[(int) range] == null) {
-           return null;
+            System.out.println("The range is all ready erased");
+            // return null;
         } else {
             arr[(int) range] = null; // making it null
-            return (int) range;
+            // return (int) range;
+            System.out.println((int) range + " range was erased");
         }
     }
 
@@ -54,7 +56,11 @@ public class Assignment2Ex4 {
     // we can do it also manually depends on the  implementation of the toString.
     // Or to save it before as a String and then return it.
     public String getRange(double range) {
-        return arr[(int) range].toString(); // O(n)
+        if (arr[(int) range] == null) {
+            return null;
+        } else {
+            return arr[(int) range].toString(); // O(n)
+        }
     }
 
 
@@ -74,33 +80,33 @@ public class Assignment2Ex4 {
     @Override
     public String toString() {
         return "Assignment2Ex4{" +
-                "arr=" + Arrays.toString(arr) +
+                " arr = " + Arrays.toString(arr) +
                 '}';
-    }
-
-    public String toString2() {
-        return super.toString();
     }
 
 
     public static void main(String[] args) {
-        Assignment2Ex4 List = new Assignment2Ex4();
-        List.addToRange(5.4);
-        List.addToRange(6.4);
-        List.addToRange(7.4);
-        List.addToRange(3.4);
-        List.addToRange(2.2);
-        List.addToRange(2.8);
-        List.addToRange(5.5);
-        List.addToRange(6.8);
-        List.addToRange(0.2);
-        List.addToRange(1.1);
-        List.addToRange(8.9);
-        List.addToRange(4.3);
-        System.out.println(List.getRange(5.3));
-        List.eraseRange(5);
-        System.out.println(List.getRange(5.2));
+        Assignment2Ex4 list = new Assignment2Ex4();
+        list.addToRange(5.4);// 1 --> nu,ber of ranges
+        list.addToRange(6.4);// 2
+        list.addToRange(7.4);// 3
+        list.addToRange(3.4);// 4
+        list.addToRange(2.2);// 5
+        list.addToRange(2.8);
+        list.addToRange(5.5);
+        list.addToRange(6.8);
+        list.addToRange(0.2);// 6
+        list.addToRange(1.1);// 7
+        list.addToRange(8.9);// 8
+        list.addToRange(4.3);// 9
+        System.out.println(list.getRange(5.3));
+        System.out.println(list.countRange());
+        System.out.println(list.toString());
+        list.eraseRange(5);
 
+        System.out.println(list.getRange(5.2));
+        System.out.println(list.countRange());
+        System.out.println(list.toString());
 
     }
 }
