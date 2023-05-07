@@ -46,7 +46,7 @@ public class Assignment2Ex4 {
         // If it is the first value in the range
         if (arr[(int) value] == null) {
             arr[(int) value] = new LinkedList<Double>();
-            arr[(int) value].addLast(value); // also 'add' function is adding by default at the end
+            arr[(int) value].add(value); // also 'add' function is adding by default at the end
         } else {
             arr[(int) value].addLast(value); // if the range is already exists, so we are adding it to the range in the end of the LinkedList in that place
         }
