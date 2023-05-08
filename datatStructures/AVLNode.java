@@ -1,9 +1,9 @@
-public class AVlNode {
+public class AVLNode {
     Integer key;
     int balance, height;
-    AVlNode left, right, parent;
+    AVLNode left, right, parent;
 
-    public AVlNode(Integer key, AVlNode parent){
+    public AVLNode(Integer key, AVLNode parent){
         this.key = key;
         this.parent = parent;
         left = right = null;

@@ -1,11 +1,11 @@
 public class AVLTree {
-    private AVlNode root;
+    private AVLNode root;
 
     // The rotation functions are O(1), because they aren't recursive, they have a lot of conditions but they are O(1)
 
     // The left rotation
-    private AVlNode rotateLeft(AVlNode a) { // O(1)
-        AVlNode b = a.right; // Node b that will be 'a' right Node
+    private AVLNode rotateLeft(AVLNode a) { // O(1)
+        AVLNode b = a.right; // Node b that will be 'a' right Node
         b.parent = a.parent; // tha seam parent
         a.right = b.left; // we help to the switch
 
@@ -26,8 +26,8 @@ public class AVLTree {
     }
 
     // Rotating the tree to the right
-    private AVlNode rotateRight(AVlNode a) { // O(1)
-        AVlNode b = a.left;
+    private AVLNode rotateRight(AVLNode a) { // O(1)
+        AVLNode b = a.left;
         b.parent = a.parent;
         a.left = b.right;
         if (a.left != null) {
@@ -49,7 +49,7 @@ public class AVLTree {
 
     // A method for updating the height of the tree
     // Helping for checking the balance condition of the tree
-    public int height(AVlNode p) { // O(1)
+    public int height(AVLNode p) { // O(1)
         if (p == null) {
             return -1;
         }
@@ -61,24 +61,24 @@ public class AVLTree {
 
 
     // A method that updating the balance of the tree nodes
-    private void setBalance(AVlNode... nodes) {
-        for (AVlNode n : nodes) {
+    private void setBalance(AVLNode... nodes) {
+        for (AVLNode n : nodes) {
             n.balance = height(n.right) - height(n.left);
         }
     }
 
-    private AVlNode rotateLeftThanRight(AVlNode n) {
+    private AVLNode rotateLeftThanRight(AVLNode n) {
         n.left = rotateLeft(n.left);
         return rotateRight(n);
     }
 
-    private AVlNode rotateRightThanLeft(AVlNode n) {
+    private AVLNode rotateRightThanLeft(AVLNode n) {
         n.left = rotateRight(n.left);
         return rotateLeft(n);
     }
 
 
-    private void rebalance(AVlNode n) { //O(log(n))
+    private void rebalance(AVLNode n) { //O(log(n))
         setBalance(n); // checking the balance factor of the Node
         if (n.balance == -2) {
             if (height(n.left.left) >= height(n.left.right)) {
@@ -103,9 +103,9 @@ public class AVLTree {
 
     public boolean insert(Integer key) { // O(log(n))
         if (root == null) {
-            root = new AVlNode(key, null);
+            root = new AVLNode(key, null);
         } else {
-            AVlNode n = root, parent;
+            AVLNode n = root, parent;
             boolean flag = true;
             while (flag) {
                 if (n.key == key) {
@@ -116,9 +116,9 @@ public class AVLTree {
                 n = goLeft ? n.left : n.right;
                 if (n == null) {
                     if (goLeft) {
-                        parent.left = new AVlNode(key, parent);
+                        parent.left = new AVLNode(key, parent);
                     } else {
-                        parent.right = new AVlNode(key, parent);
+                        parent.right = new AVLNode(key, parent);
                     }
                     rebalance(parent);
                 }
@@ -133,8 +133,8 @@ public class AVLTree {
         if (root == null) {
             return;
         }
-        AVlNode n = root, delNode = null;
-        AVlNode child = root, parent = root;
+        AVLNode n = root, delNode = null;
+        AVLNode child = root, parent = root;
         while (child != null) {
             parent = n;
             n = child;
@@ -167,7 +167,7 @@ public class AVLTree {
         return size(root);
     }
 
-    public int size(AVlNode n) {
+    public int size(AVLNode n) {
         int ans = 0;
         if (n != null) {
             ans = size(n.left) + size(n.right) + 1;
@@ -180,7 +180,7 @@ public class AVLTree {
         System.out.println();
     }
 
-    private void printBalance(AVlNode n) {
+    private void printBalance(AVLNode n) {
         if (n != null) {
             printBalance(n.left);
             System.out.printf("%d ", n.balance);
@@ -192,7 +192,7 @@ public class AVLTree {
         printPreorderPlus("", root);
     }
 
-    public void printPreorderPlus(String Path, AVlNode node) {
+    public void printPreorderPlus(String Path, AVLNode node) {
         if (node != null) {
             System.out.println(node.key + ": " + Path);
             printPreorderPlus(Path + "L", node.left);
