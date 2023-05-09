@@ -46,11 +46,11 @@ public class BinarySearchTree<T> {
      * 2. The element has no children is a leaf we need just to set it as a null
      * 3. The element has only one child, is internal node --> we need to delete it and put his child instead of him
      * 4. The element has two children so we cant just replace on of them instead, because that transformation can cause problems
-     *      in the sort down the tree. So we will want to move instead of the deleted element,
-     *      another element that will be bigger from the subRightTree, and smaller than the subLeftTree.
-     *      That element is or:
-     *          a. the smallest element on the subRightTree
-     *          b. the biggest element on the subLeftTree
+     * in the sort down the tree. So we will want to move instead of the deleted element,
+     * another element that will be bigger from the subRightTree, and smaller than the subLeftTree.
+     * That element is or:
+     * a. the smallest element on the subRightTree
+     * b. the biggest element on the subLeftTree
      */
 
     public NodeSearch remove(NodeSearch p, Integer item) { // O(log(n))
@@ -124,4 +124,35 @@ public class BinarySearchTree<T> {
         if (tree == null) return 0;
         return 1 + Math.max(height(tree.left), height(tree.right));
     }
+
+
+//    NodeSearch findNodeSuccessor(NodeSearch x) { // O(log(n))
+//        if (x == null) {
+//            return treeMax(root);
+//        } else if (x.right != null) { // case 2
+//            return treeMin(x.right); // O(log(n))
+//        } // need to add boolean flag to work
+//        NodeSearch y = x.parent; // case 3
+//        while ((y != null) && x = y.right) { // going backward as till the right number
+//            x = y;
+//            y = x.parent;
+//        }
+//        return y;
+//
+//    }
+
+    NodeSearch treeMin(NodeSearch x) { // going to the most left area --> O(log(n))
+        while (x.left != null) {
+            x = x.left;
+        }
+        return x;
+    }
+
+    NodeSearch treeMax(NodeSearch y) { // going to the most right area --> O(log(n))
+        while (y.right != null) {
+            y = y.right;
+        }
+        return y;
+    }
+
 }

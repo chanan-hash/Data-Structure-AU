@@ -4,7 +4,7 @@ public class NodeSearch {
 
     // when we are comparing nodes, we are comparing/or changing addresses because they are pointing for addresses of objects
     Integer number;
-    NodeSearch left, right;
+    NodeSearch left, right,parent;
 
     // constructor for new subtree
     public NodeSearch(Integer value) {
@@ -17,6 +17,12 @@ public class NodeSearch {
         this.number = data;
         this.left = left;
         this.right = right;
+    }
+
+    public NodeSearch(Integer key, NodeSearch parent){
+        this.number = key;
+        left = right = null;
+        this.parent = parent;
     }
 
     @Override
