@@ -53,7 +53,7 @@ public class StackFromLL {
         return size == 0;
     }
 
-    public void clear() {
+    public void clear() { // O(n)
         while (head != null) {
             head = head.next;
         }
