@@ -16,7 +16,7 @@ public class ex8 {
         class2.add(99);
         class2.add(100);
 
-        LinkedList<Integer> sortedGrades = mergeList(class1,class2);
+        LinkedList<Integer> sortedGrades = mergeList(class1, class2);
         System.out.println(sortedGrades.toString());
     }
 
@@ -26,17 +26,29 @@ public class ex8 {
         LinkedList<Integer> l3 = new LinkedList<>();
         int i = 0, j = 0;
         while (i < l1.size() && j < l2.size()) {
-            if (l1.get(i) < l2.get(j) && !l2.contains(l1.get(i))) {
-                l3.add(l1.get(i++));
-            } else if (l1.get(i) > l2.get(j) && !l1.contains(l2.get(j))) {
-                l3.add(l2.get(j++));
+            if (l1.get(i) <= l2.get(j)) { // ONe of the condition of the inequality
+                if (!l2.contains(l1.get(i))) { // splitting the condition because we want to increment the i or j, if it contains
+                    l3.add(l1.get(i));
+                }
+                i++;
+            } else if (l1.get(i) > l2.get(j)) {
+                if (!l1.contains(l2.get(j))) {
+                    l3.add(l2.get(j++));
+                }
+                j++;
             }
         }
         while (i < l1.size()) { // if l1.size > l2.size
-            l3.add(l1.get(i++));
+            if (!l2.contains(l1.get(i))) {
+                l3.add(l1.get(i));
+            }
+            i++;
         }
         while (j < l2.size()) { // if l1.size < l2.size
-            l3.add(l2.get(j++));
+            if (!l1.contains(l2.get(j))) {
+                l3.add(l2.get(j));
+            }
+            j++;
         }
         return l3;
     }
