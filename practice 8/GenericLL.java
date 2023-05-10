@@ -1,3 +1,5 @@
+import com.sun.source.tree.BinaryTree;
+
 public class GenericLL<T> {
     /**
      * This class represents a generic Linked List, we aren't using java's LinkedList because this is already built class
@@ -82,6 +84,21 @@ public class GenericLL<T> {
 
     // For more detailed class see at:
     // https://github.com/LeviEyal/DataStructuresCourse/blob/master/leead_exsercises/src/%D7%AA%D7%99%D7%A8%D7%92%D7%95%D7%9C%D7%99%D7%9D/GenericLinkedList.java
+
+    // Ex5
+    public int rec_size() {
+        return rec_size(head);
+    }
+
+    public int rec_size(Node n) {
+        if (n == null) {
+            return 0;
+        }
+        return 1 + rec_size(n.next); // Adding 1 each recursive call, and that how it will count the size
+    }
+
+    // Ex6
+
 
 }
 

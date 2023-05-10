@@ -1,3 +1,5 @@
+import com.sun.source.tree.BinaryTree;
+
 import java.util.LinkedList;
 
 public class ex8 {
@@ -18,6 +20,7 @@ public class ex8 {
 
         LinkedList<Integer> sortedGrades = mergeList(class1, class2);
         System.out.println(sortedGrades.toString());
+
     }
 
     //Ex4
@@ -39,7 +42,7 @@ public class ex8 {
             }
         }
         while (i < l1.size()) { // if l1.size > l2.size
-            if (!l2.contains(l1.get(i))) {
+            if (!l2.contains(l1.get(i))) { // adding here again the condition
                 l3.add(l1.get(i));
             }
             i++;
@@ -73,5 +76,8 @@ public class ex8 {
         return sorted;
     }
  */
+
+    // Ex
+
 
 }
