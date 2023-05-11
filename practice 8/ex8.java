@@ -21,6 +21,48 @@ public class ex8 {
         LinkedList<Integer> sortedGrades = mergeList(class1, class2);
         System.out.println(sortedGrades.toString());
 
+        /*
+           // Testing question 5: //
+        System.out.println(sortedGrades.size());
+
+        // Testing question 6: //
+        LinkedList<Integer> t = new LinkedList<>();
+        t.add(1);
+        t.add(2);
+        t.add(3);
+        t.add(4);
+        t.add(5);
+        System.out.println("Before reverse: "+t.toString());
+        q7(t);
+        System.out.println("After reverse: "+t.toString());
+
+        // Testing question 8: //
+        GenericLinkedList<String> l8 = new GenericLinkedList<>();
+        l8.add("a");
+        l8.add("b");
+        l8.add("c");
+        l8.add("b");
+        l8.add("a");
+        System.out.println(q8(l8));
+
+        // Testing question 9: //
+        MyLinkedList a = new MyLinkedList();
+        a.add(0);
+        a.add(7);
+        a.add(9);
+        a.add(3);
+        a.add(4);
+        GenericLinkedList<Integer> b = new GenericLinkedList<>();
+        b.add(6);
+        b.add(3);
+        b.add(7);
+        b.add(12);
+        b.add(1);
+        System.out.println(q9_1(a,b));
+        System.out.println(q9_2(a,b));
+
+         */
+
     }
 
     //Ex4
@@ -116,6 +158,30 @@ public class ex8 {
     }
     */
 
-    
+    //Ex9
+    // For each element in A we will find the right element in B
+    //O(n*m) --> which 'n' is the size of A, and 'm' is the size of B
+    public static LinkedList<Integer> intersect_1(LinkedList<Integer> A, LinkedList<Integer> B){
+        LinkedList<Integer> C = new LinkedList<>();
+        for (int i = 0; i < A.size(); i++) { // O(Asize)
+            int temp = A.get(i);
+            for (int j = 0; j < B.size() ; j++) { // O(Bsize)
+                if (temp == B.get(j)){
+                    C.add(temp);
+                }
+            }
+        }
+        return C;
+    }
+
+
+    // For each element in B we will find the right element in A
+    public static LinkedList<Integer> intersect_2(LinkedList<Integer> A, LinkedList<Integer> B){
+        LinkedList<Integer> C = new LinkedList<>();
+
+        return C;
+    }
+
+
 
 }
