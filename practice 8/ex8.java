@@ -161,12 +161,12 @@ public class ex8 {
     //Ex9
     // For each element in A we will find the right element in B
     //O(n*m) --> which 'n' is the size of A, and 'm' is the size of B
-    public static LinkedList<Integer> intersect_1(LinkedList<Integer> A, LinkedList<Integer> B){
+    public static LinkedList<Integer> intersect_1(LinkedList<Integer> A, LinkedList<Integer> B) {
         LinkedList<Integer> C = new LinkedList<>();
         for (int i = 0; i < A.size(); i++) { // O(Asize)
             int temp = A.get(i);
-            for (int j = 0; j < B.size() ; j++) { // O(Bsize)
-                if (temp == B.get(j)){
+            for (int j = 0; j < B.size(); j++) { // O(Bsize)
+                if (temp == B.get(j)) {
                     C.add(temp);
                 }
             }
@@ -176,12 +176,24 @@ public class ex8 {
 
 
     // For each element in B we will find the right element in A
-    public static LinkedList<Integer> intersect_2(LinkedList<Integer> A, LinkedList<Integer> B){
+    // Because 'A' is sorted we will check against it only if the value from 'B' is Or bigger than the first element in 'A',
+    // Or if the value is smaller than the last element in 'A'
+    // The complexity is the same (if all 'B' elements are between 'A'), but it is more efficient because it can reduce the getting inside the loop
+    public static LinkedList<Integer> intersect_2(LinkedList<Integer> A, LinkedList<Integer> B) {
         LinkedList<Integer> C = new LinkedList<>();
 
+        for (int i = 0; i < B.size(); i++) {
+            int temp = B.get(i);
+            if (temp >= A.peek() || temp <= A.peekLast()) { // only if the element from B between A
+                for (int j = 0; j < A.size(); j++) {
+                    if (temp == A.get(j)) {
+                        C.add(temp);
+                    }
+                }
+            }
+        }
         return C;
     }
-
 
 
 }
