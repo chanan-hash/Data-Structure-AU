@@ -77,7 +77,20 @@ public class ex8 {
     }
  */
 
-    // Ex
+    // Ex7
+    public static <T> void treverse_rec(LinkedList l) {
+        LinkedList<T> l_rec = new LinkedList<>();
+        reverse_rec(l, l_rec);
+        l.addAll(l_rec);
+    }
+
+    public static <T> void reverse_rec(LinkedList l1, LinkedList l2) {
+        if (l1.isEmpty()) {
+            return;
+        }
+        l2.add(l1.removeLast());
+        reverse_rec(l1, l2);
+    }
 
 
 }

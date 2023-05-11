@@ -98,7 +98,33 @@ public class GenericLL<T> {
     }
 
     // Ex6
+    // reversing a single linked list by using stack
+    // we can do it with queue, but we need a method of 'remove last', and than adding it to the queue. It will behave like a stack
+    public void opposite(GenericLL<Integer> list) {
+        StackFromLL stack = new StackFromLL();
+        while (!list.isEmpty()) { // O(n)
+            stack.push(list.removeFirst());
+        }
+        while (!stack.isEmpty()) {
+            list.add(stack.pop());
+        }
+    }
 
+    // Another way without using another data structure
+//    public Node reverse() {
+//        //use copyList function to avoid altering head --> DOESN'T WORK
+//        Node current = head;
+//        Node temp = null;
+//        Node copied_result = null;
+//
+//        while(current != null){
+//            temp = current.next;
+//            current.next = copied_result;
+//            copied_result = current;
+//            current = temp;
+//        }
+//        return copied_result;
+//    }
 
 }
 
