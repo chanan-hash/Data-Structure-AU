@@ -126,20 +126,21 @@ public class BinarySearchTree<T> {
     }
 
 
-//    NodeSearch findNodeSuccessor(NodeSearch x) { // O(log(n))
-//        if (x == null) {
-//            return treeMax(root);
-//        } else if (x.right != null) { // case 2
-//            return treeMin(x.right); // O(log(n))
-//        } // need to add boolean flag to work
-//        NodeSearch y = x.parent; // case 3
-//        while ((y != null) && x = y.right) { // going backward as till the right number
-//            x = y;
-//            y = x.parent;
-//        }
-//        return y;
-//
-//    }
+    public NodeSearch findNodeSuccessor(NodeSearch x) { // O(log(n))
+        if (x == null) {
+            return treeMax(root);
+        }
+        if (x.right != null) { // case 2
+            return treeMin(x.right); // O(log(n))
+        }
+        // need to add boolean flag to work
+        NodeSearch y = x.parent; // case 3
+        while (y != null && x == y.right) { // going backward as till the right number
+            x = y;
+            y = x.parent;
+        }
+        return y;
+    }
 
     NodeSearch treeMin(NodeSearch x) { // going to the most left area --> O(log(n))
         while (x.left != null) {
@@ -155,4 +156,18 @@ public class BinarySearchTree<T> {
         return y;
     }
 
+    public NodeSearch findNodePredecessor(NodeSearch x) { // O(log(n))
+        if (x == null) {
+            return treeMin(root);
+        }
+        if (x.left != null) {
+            return treeMax(x.left);
+        }
+        NodeSearch y = x.parent;
+        while (y != null && x == y.left) {
+            x = y;
+            y = x.parent;
+        }
+        return y;
+    }
 }
