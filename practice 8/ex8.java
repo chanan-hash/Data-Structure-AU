@@ -93,4 +93,29 @@ public class ex8 {
     }
 
 
+    // Ex8
+    public static boolean isSymetric(LinkedList l) {
+        for (int i = 0; i < l.size(); i++) {
+            if (l.get(i) != l.get(l.size() - i)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // Another way for it
+    /*
+    //Question 8:   O(n)
+    public static <T> boolean q8(GenericLinkedList<T> t){
+        int h = t.size()-1, l=0;
+        while(l<h){
+            if(t.get(l++) != t.get(h--))
+                return false;
+        }
+        return true;
+    }
+    */
+
+    
+
 }
