@@ -5,7 +5,25 @@ public class ex9 {
 
     }
 
+    private class Node {
+        int data;
+        Node left, right, parent;
 
+        public Node(int num) {
+            this.data = num;
+            left = right = null;
+        }
+
+        public Node(int num, Node left, Node right) {
+            this.data = num;
+            this.left = left;
+            this.right = right;
+        }
+    }
+
+    public class BT{
+
+    }
     // Ex1
     //
     /* preorder:
@@ -19,8 +37,8 @@ public class ex9 {
      *      tree3 = A,B,C,D,E,F,G
      *
      * postorder:
-     *      tree1 -->
-     *      tree2 -->
-     *      tree3 -->
+     *      tree1 --> 1,4,7,5,15,20,16,14,3
+     *      tree2 --> A,C,E,D,B,H,I,G,F
+     *      tree3 --> A,C,B,E,G,F,D
      */
 }
