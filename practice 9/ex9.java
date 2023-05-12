@@ -1,8 +1,8 @@
 public class ex9 {
     public static void main(String[] args) {
-            BT_BST.BST tree1 = new BT_BST.BST();
-            BT_BST.BST tree2 = new BT_BST.BST();
-            BT_BST.BST tree3 = new BT_BST.BST();
+            BST tree1 = new BST();
+            BST tree2 = new BST();
+            BST tree3 = new BST();
 
             tree1.insert(3);
             tree1.insert(14);
@@ -17,6 +17,7 @@ public class ex9 {
             tree1.printPreOrder();
             tree1.printInOrder();
             tree1.printPostOrder();
+            tree1.printPreorderPlus();
         }
         // Ex1
         //
@@ -26,7 +27,7 @@ public class ex9 {
          *      tree3. F.B,A,C,F,E,G
          *
          * inorder:
-         *      tree1 = 1,3,3,4,7,14,15,16,20
+         *      tree1 = 1,3,4,5,7,14,15,16,20
          *      tree2 = A,B,C,D,E,F,G.H.I
          *      tree3 = A,B,C,D,E,F,G
          *
@@ -37,4 +38,4 @@ public class ex9 {
          */
 
     }
-}
+
