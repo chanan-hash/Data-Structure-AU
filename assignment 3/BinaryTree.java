@@ -9,7 +9,7 @@ public class BinaryTree {
     private Node root;
     int size;
 
-    public BinaryTree(){
+    public BinaryTree() {
         root = null;
         size = 0;
     }
@@ -18,29 +18,52 @@ public class BinaryTree {
      * This function is checking if the tree is a binary search tree, means:
      * We are going to check if the left son is smaller than the parent,
      * and if the right son is bigger than his parent.
-     *
+     * <p>
      * complexity:
      * Usually to check if a BT is a search tree, it can take O(n), if the tree only on it's left (or right) side.
      * we need to go over the whole tree and check it, so The complexity is O(n).
-     *
+     * <p>
      * There are 2 way do it:
      * 1. put the whole tree in Arraylist by inorder, because One of the binary tree qualities is that inorder we will get it sorted.
      * then we can go over the array and check if it sorted, if not return false
-     *
+     * <p>
      * 2.
      */
-    public boolean isValidBST(){
-        if(root == null){
-            return false; // the tree is empty
-        }
-        else if (!(root.left.getKey().compareTo(root.getKey()) < 0 && root.right.getKey().compareTo(root.getKey()) > 0 )){
-
-        }
-        boolean ans = true;
-        return ans;
+//    public boolean isValidBST(){
+//        if(root == null){
+//            return false; // the tree is empty
+//        }
+//        else if (!(root.left.getKey().compareTo(root.getKey()) < 0 && root.right.getKey().compareTo(root.getKey()) > 0 )){
+//
+//        }
+//        boolean ans = true;
+//        return ans;
+//    }
+    public boolean isValidBST() {
+        return isValidBST(root, null, null);
     }
 
-    public boolean isBlackHeight(){
+    public static boolean isValidBST(Node root, Integer max, Integer min) {
+
+        // an empty binary trees is a valid BST.
+        if (root == null) {
+            return true;
+        }
+
+        // in the recursion when we go each to left or subtree it will check thew condition of the definition of
+        if (max != null && root.getKey() >= max) {
+            return false; // for checking the lef side
+        }
+
+        if (min != null && root.getKey() <= min) { // for checking the right side
+            return false;
+        }
+
+        return isValidBST(root.left, root.getKey(), min) &&
+                isValidBST(root.right, max, root.getKey());
+    }
+
+    public boolean isBlackHeight() {
         boolean ans = true;
         return ans;
     }
@@ -95,5 +118,23 @@ public class BinaryTree {
         }
     }
 */
+    public static void main(String args[]) {
+        // Creating a binary tree
+        Node root = new Node(10);
+        root.left = new Node(5);
+        root.right = new Node(15);
+        root.left.left = new Node(2);
+        root.left.left.left = new Node(1);
+        root.left.right = new Node(7);
+        root.right.left = new Node(13);
+        root.right.left.right = new Node(14);
+        root.right.right = new Node(21);
+
+        if (BinaryTree.isValidBST(root,null,null)) {
+            System.out.println("A valid BST");
+        } else {
+            System.out.println("Not a valid BST");
+        }
+    }
 
 }

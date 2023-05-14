@@ -11,6 +11,11 @@ public class Node {
         left = right = null;
     }
 
+    Node(int value) {
+        this.key = value;
+        color = false;
+    }
+
     @Override
     public String toString() {
         return "" + key;
