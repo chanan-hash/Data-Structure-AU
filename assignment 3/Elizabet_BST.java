@@ -121,7 +121,7 @@ public class Elizabet_BST {
         return ans;
     }
 
-    //preorder tracerse (root->left->right)
+    //preorder traverse (root->left->right)
     public void printPreorderPlus() {
         printPreorderPlus("", root);
     }

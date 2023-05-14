@@ -18,6 +18,8 @@ public class ex9 {
             tree1.printInOrder();
             tree1.printPostOrder();
             tree1.printPreorderPlus();
+
+            System.out.println(tree1.numNodes());
         }
         // Ex1
         //

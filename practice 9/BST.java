@@ -55,6 +55,76 @@ public class BST {
         return ans;
     }
 
+    // O(n), because we can have the kisted tree, all the elements on one side (right or left).
+    public boolean search(Integer elem) {
+        boolean ans = false;
+        Node n = root;
+        while (n != null) {
+            if (elem == n.data) {
+                ans = true;
+            } else if (elem < n.data) {
+                n = n.left;
+            } else {
+                n = n.right;
+            }
+        }
+        return ans;
+    }
+
+    // Ex5
+    // was contributed from Eyal's levi github
+    // https://github.com/LeviEyal/DataStructuresCourse/blob/master/leead_exsercises/src/%D7%AA%D7%99%D7%A8%D7%92%D7%95%D7%9C%D7%99%D7%9D/BinaryTree.java
+    // wrapping function
+    public Node find(Integer data) {
+        return find(data, root);
+    }
+
+    // recursive finding the node of the value
+    // O(n), but it is not using the qualities of binary search tree
+    public Node find(Integer key, Node p) {
+        if (p == null) {
+            return null;
+        }
+        if (p.data.equals(key)) {
+            return p;
+        }
+        Node left = find(key, p.left);
+        Node right = find(key, p.right);
+        if (left != null) {
+            return left;
+        } else if (right != null) {
+            return right;
+        } else {
+            return null; // didn't find ot at all
+        }
+    }
+
+    public int numNodes() {
+        return numNodes(root);
+    }
+
+    // Ex4
+    public int numNodes(Node n) {
+        if (n == null) {
+            return 0; // empty tree
+        }
+        return 1 + numNodes(n.right) + numNodes(n.left);
+    }
+
+    // Ex6
+    public String isLeaf(Integer data) {
+        // first we need to find the object and then to check it's Node
+        Node found = find(data);
+        if (found == null) {
+            return "Not a vertex";
+        } else if (found.left == null && found.right == null) {
+            return "A leaf";
+        } else {
+            return "Not a leaf";
+        }
+    }
+
+    // Ex3
     // Preorder
     public void printPreOrder() {
         printPreOrder(root);
@@ -69,6 +139,7 @@ public class BST {
         }
     }
 
+    // Ex2
     // Inorder
     public void printInOrder() {
         printInOrder(root);
@@ -97,15 +168,17 @@ public class BST {
         }
     }
 
-    //preorder tracerse (root->left->right)
-    public void printPreorderPlus(){
+
+    //preorder traverse (root->left->right)
+    public void printPreorderPlus() {
         printPreorderPlus("", root);
     }
-    public void printPreorderPlus(String Path, Node node){
-        if (node != null){
+
+    public void printPreorderPlus(String Path, Node node) {
+        if (node != null) {
             System.out.println(node.data + ": " + Path);
-            printPreorderPlus(Path+"L", node.left);
-            printPreorderPlus(Path+"R", node.right);
+            printPreorderPlus(Path + "L", node.left);
+            printPreorderPlus(Path + "R", node.right);
         }
     }
 
