@@ -207,7 +207,7 @@ public class Elizabet_BT {
                 isValidBST(root.right, max, (Integer) root.getData());
     }
 
-    public boolean isBlackHeight() {
+    public boolean hasValidHeight() {
         if (root == null) {
             return true;
         }
@@ -257,6 +257,7 @@ public class Elizabet_BT {
         System.out.println("number of nodes: " + bt.numOfNodes());
 
         System.out.println("\n" + bt.isValidBST(bt.root, null, null));
+        System.out.println(bt.hasValidHeight());
     }
 }
 /*19

@@ -1,9 +1,10 @@
 public class Elizabet_BST {
     // Node class
     public class Node {
+        boolean color;
+
         Integer data;
         Node left, right;
-
         public Node(Integer newData) {
             data = newData;
             left = null;
@@ -22,6 +23,10 @@ public class Elizabet_BST {
 
         public Integer getData() {
             return this.data;
+        }
+
+        public boolean isColor() {
+            return this.color;
         }
     }
 
@@ -164,6 +169,35 @@ public class Elizabet_BST {
         return isValidBST(root.left, root.getData(), min) &&
                 isValidBST(root.right, max, root.getData());
     }
+    public boolean hasValidHeight() {
+        if (root == null) {
+            return true;
+        }
+        return countBlackNodes(root, 0) != -1;
+    }
+
+    // Helper method to count the number of black nodes in each path
+    private int countBlackNodes(Node node, int blackCount) {
+        if (node == null) {
+            return blackCount;
+        }
+
+        if (!node.isColor() == false) { // means it is black node
+            blackCount++;
+        }
+
+        int leftCount = countBlackNodes(node.left, blackCount);
+        int rightCount = countBlackNodes(node.right, blackCount);
+
+        if (node.left != null && node.right != null && leftCount != rightCount) {
+            return -1; // means the black path are different one of each other
+        }
+
+        return Math.max(leftCount, rightCount);
+    }
+
+
+
 
     public static void main(String[] args) {
         Elizabet_BST tree = new Elizabet_BST();
@@ -178,6 +212,7 @@ public class Elizabet_BST {
 
         System.out.println(tree.isValidBST(tree.root,null,null));
 
+        System.out.println(tree.hasValidHeight());
     }
 
 }
