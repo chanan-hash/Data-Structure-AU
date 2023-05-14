@@ -144,6 +144,7 @@ public class Elizabet_BST {
         return 1 + Math.max(height(tree.left), height(tree.right));
     }
 
+    //From assignment3
     public boolean isValidBST(Node root, Integer max, Integer min) {
 
         // an empty binary trees is a valid BST.

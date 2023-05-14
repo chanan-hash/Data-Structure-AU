@@ -43,6 +43,8 @@ public class BinaryTree {
         return isValidBST(root, null, null);
     }
 
+
+    // From assignment 3
     public static boolean isValidBST(Node root, Integer max, Integer min) {
 
         // an empty binary trees is a valid BST.
