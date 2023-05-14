@@ -7,6 +7,6 @@ public class Ex3 {
     }
 
     public static boolean hasValidHeight(BinaryTree tree){
-        return tree.isBlackHeight();
+        return tree.hasValidHeight();
     }
 }

@@ -73,7 +73,7 @@ public class BinaryTree {
      * in the wrapping function, if the answer is different from -1 means the Red-Black tree is correct
      */
     // Method to check if all paths from root to leaves have the same number of black nodes
-    public boolean isBlackHeight() {
+    public boolean hasValidHeight() {
         if (root == null) {
             return true;
         }
@@ -86,7 +86,7 @@ public class BinaryTree {
             return blackCount;
         }
 
-        if (node.isColor() == false) { // means it is black node
+        if (!node.isColor() == false) { // means it is black node
             blackCount++;
         }
 

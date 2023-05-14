@@ -14,6 +14,10 @@ public class RedBlackTree {
             String c = color ? "black" : "red";
             return data + ", " + c;
         }
+
+        public boolean getColor() {
+            return this.color;
+        }
     }
 
 
@@ -202,6 +206,54 @@ public class RedBlackTree {
             printPreorderPlus(Path + "L", node.left);
             printPreorderPlus(Path + "R", node.right);
         }
+    }
+
+    // assignment 3
+    public boolean isBlackHeight() {
+        if (root == null) {
+            return true;
+        }
+        return countBlackNodes(root, 0) != -1;
+    }
+
+    // Helper method to count the number of black nodes in each path
+    private int countBlackNodes(Node node, int blackCount) {
+        if (node == null) {
+            return blackCount;
+        }
+
+        if (!node.getColor() == false) { // means it is black node
+            blackCount++;
+        }
+
+        int leftCount = countBlackNodes(node.left, blackCount);
+        int rightCount = countBlackNodes(node.right, blackCount);
+
+        if (node.left != null && node.right != null && leftCount != rightCount) {
+            return -1; // means the black path are different one of each other
+        }
+
+        return Math.max(leftCount, rightCount);
+    }
+
+
+
+
+    public static void main(String[] args) {
+        RedBlackTree tree = new RedBlackTree();
+        tree.insert(7);
+        tree.insert(11);
+        tree.insert(10);
+        tree.insert(20);
+        tree.insert(5);
+        tree.insert(2);
+        tree.insert(3);
+        tree.insert(6);
+        tree.insert(8);
+        tree.insert(4);
+        tree.printPreorderPlus();
+
+        System.out.println(tree.isBlackHeight());
     }
 
 }

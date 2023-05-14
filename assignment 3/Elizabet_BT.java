@@ -6,6 +6,7 @@ public class Elizabet_BT {
     private class BTNode {
         Object data;
         BTNode left, right;
+        boolean color;
 
         BTNode(Object data) {
             this.data = data;
@@ -19,6 +20,9 @@ public class Elizabet_BT {
 
         public Object getData() {
             return this.data;
+        }
+        public boolean getColor(){
+            return this.color;
         }
     }
 
@@ -201,6 +205,33 @@ public class Elizabet_BT {
 
         return isValidBST(root.left, (Integer) root.getData(), min) &&
                 isValidBST(root.right, max, (Integer) root.getData());
+    }
+
+    public boolean isBlackHeight() {
+        if (root == null) {
+            return true;
+        }
+        return countBlackNodes(root, 0) != -1;
+    }
+
+    // Helper method to count the number of black nodes in each path
+    private int countBlackNodes(BTNode node, int blackCount) {
+        if (node == null) {
+            return blackCount;
+        }
+
+        if (!node.getColor() == false) { // means it is black node
+            blackCount++;
+        }
+
+        int leftCount = countBlackNodes(node.left, blackCount);
+        int rightCount = countBlackNodes(node.right, blackCount);
+
+        if (node.left != null && node.right != null && leftCount != rightCount) {
+            return -1; // means the black path are different one of each other
+        }
+
+        return Math.max(leftCount, rightCount);
     }
 
 
