@@ -1,6 +1,6 @@
 public class Node {
     private final Integer key;
-    private final boolean color;
+    private final boolean color; // RED = true, BLACK = false, from elizabet class
 
     Node left, right;
 
@@ -11,6 +11,7 @@ public class Node {
         left = right = null;
     }
 
+    // adding for me, for isValidBST
     Node(int value) {
         this.key = value;
         color = false;

@@ -25,20 +25,19 @@ public class BinaryTree {
      * <p>
      * There are 2 way do it:
      * 1.
-     *  put the whole tree in Arraylist by inorder, because One of the binary tree qualities is that inorder we will get it sorted.
-     *  then we can go over the array and check if it sorted, if not return false
-     *
+     * put the whole tree in Arraylist by inorder, because One of the binary tree qualities is that inorder we will get it sorted.
+     * then we can go over the array and check if it sorted, if not return false
+     * <p>
      * 2.
-     *  The function gets Node(the root), maximum value and minimum value.
-     *  if the Node is null, means the tree is a search tree.
-     *      explanation: in the recursion if we got to that value that is null and didn't return false till there,
-     *      means the tree is built like a search tree
-     *  Then if the max value (that in the recursion will represent the right side of the tree), is less or equal to the node key, means it is not a search tree,
-     *  because we'll get the nodes value is bigger than it's right son. (or smaller than it's left son)
-     *  The same for the min value, that in the recursion will represent the left side of the tree.
-     *  In each recursive call we are passing the Nodes value as the min value to the left subtree,
-     *  and as the max value to the right subtree
-     *
+     * The function gets Node(the root), maximum value and minimum value.
+     * if the Node is null, means the tree is a search tree.
+     * explanation: in the recursion if we got to that value that is null and didn't return false till there,
+     * means the tree is built like a search tree
+     * Then if the max value (that in the recursion will represent the right side of the tree), is less or equal to the node key, means it is not a search tree,
+     * because we'll get the nodes value is bigger than it's right son. (or smaller than it's left son)
+     * The same for the min value, that in the recursion will represent the left side of the tree.
+     * In each recursive call we are passing the Nodes value as the min value to the left subtree,
+     * and as the max value to the right subtree
      */
 
     // visualisation for the function:
@@ -68,11 +67,39 @@ public class BinaryTree {
     }
 
 
-
+    /**
+     * First idea to count the black Nodes path, and then to check if for every path is tge same way
+     *
+     * @return
+     */
+    // Method to check if all paths from root to leaves have the same number of black nodes
     public boolean isBlackHeight() {
-        boolean ans = true;
-        return ans;
+        if (root == null) {
+            return true;
+        }
+        return countBlackNodes(root, 0) != -1;
     }
+
+    // Helper method to count the number of black nodes in each path
+    private int countBlackNodes(Node node, int blackCount) {
+        if (node == null) {
+            return blackCount;
+        }
+
+        if (node.isColor() == false) { // means it is black node
+            blackCount++;
+        }
+
+        int leftCount = countBlackNodes(node.left, blackCount);
+        int rightCount = countBlackNodes(node.right, blackCount);
+
+        if (node.left != null && node.right != null && leftCount != rightCount) {
+            return -1; // means the black path are different one of each other
+        }
+
+        return Math.max(leftCount, rightCount);
+    }
+
 
     // adding a binary tree to array list inorder, when we are creating the tree we also create an array list,
     // and adding it like printing inorder, just instead of printing list.add(value)
@@ -136,7 +163,7 @@ public class BinaryTree {
         root.right.left.right = new Node(14);
         root.right.right = new Node(21);
 
-        if (BinaryTree.isValidBST(root,null,null)) {
+        if (BinaryTree.isValidBST(root, null, null)) {
             System.out.println("A valid BST");
         } else {
             System.out.println("Not a valid BST");
