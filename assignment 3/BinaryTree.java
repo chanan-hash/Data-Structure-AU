@@ -68,9 +68,9 @@ public class BinaryTree {
 
 
     /**
-     * First idea to count the black Nodes path, and then to check if for every path is tge same way
-     *
-     * @return
+     * We are counting the black height from each subtree starting from the root and incrementing, every time we see black node.
+     * Then in the end if they are different the right path from the left path, means there is a different number of black nodes.
+     * in the wrapping function, if the answer is different from -1 means the Red-Black tree is correct
      */
     // Method to check if all paths from root to leaves have the same number of black nodes
     public boolean isBlackHeight() {
