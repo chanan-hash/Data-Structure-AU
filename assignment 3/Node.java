@@ -15,5 +15,29 @@ public class Node {
     public String toString() {
         return "" + key;
     }
+
+    public boolean isColor() {
+        return color;
+    }
+
+    public Node getLeft() {
+        return left;
+    }
+
+    public void setLeft(Node left) {
+        this.left = left;
+    }
+
+    public Node getRight() {
+        return right;
+    }
+
+    public void setRight(Node right) {
+        this.right = right;
+    }
+
+    public Integer getKey() {
+        return key;
+    }
 }
 

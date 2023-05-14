@@ -3,10 +3,10 @@ public class Ex3 {
 
     }
     public static boolean isValidBST(BinaryTree tree){
-        return tree.isBST();
+        return tree.isValidBST();
     }
 
     public static boolean hasValidHeight(BinaryTree tree){
-        return tree.isBlackHeigh();
+        return tree.isBlackHeight();
     }
 }
