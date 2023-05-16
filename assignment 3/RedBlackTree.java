@@ -222,7 +222,7 @@ public class RedBlackTree {
             return blackCount;
         }
 
-        if (!node.getColor() == false) { // means it is black node
+        if (node.getColor() == BLACK) { // means it is black node
             blackCount++;
         }
 
@@ -258,7 +258,7 @@ public class RedBlackTree {
             return -1; // means the black path are different one of each other
         }
 
-        if (node.color == false) { // means it is black node
+        if (node.color == BLACK) { // means it is black node
             return blackCount + 1;
         } else {
             return blackCount + 0;
