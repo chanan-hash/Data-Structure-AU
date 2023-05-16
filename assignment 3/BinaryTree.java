@@ -76,6 +76,10 @@ public class BinaryTree {
      */
     // Method to check if all paths from root to leaves have the same number of black nodes
     public boolean hasValidHeight() {
+        boolean ans = isValidBST();
+        if(ans == false){ // checking before if it is binary search tree
+            return false;
+        }
         if (root == null) {
             return true;
         }

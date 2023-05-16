@@ -238,6 +238,36 @@ public class RedBlackTree {
 
 
 
+    public boolean hasValidHeight2() {
+        if (root == null) {
+            return true;
+        }
+        return countBlackNodes2(root, 0) != -1;
+    }
+
+
+    public static int countBlackNodes2(Node node, int blackCount) {
+        if (node == null) {
+            return blackCount;
+        }
+
+        int leftCount = countBlackNodes2(node.left, blackCount);
+        int rightCount = countBlackNodes2(node.right, blackCount);
+
+        if (leftCount != rightCount || leftCount == -1) {
+            return -1; // means the black path are different one of each other
+        }
+
+        if (node.color == false) { // means it is black node
+            return blackCount + 1;
+        } else {
+            return blackCount + 0;
+        }
+    }
+
+
+
+
 
     public static void main(String[] args) {
         RedBlackTree tree = new RedBlackTree();
@@ -254,6 +284,7 @@ public class RedBlackTree {
         tree.printPreorderPlus();
 
         System.out.println(tree.isBlackHeight());
+        System.out.println(tree.hasValidHeight2());
     }
 
 }

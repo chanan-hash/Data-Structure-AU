@@ -1,14 +1,45 @@
 public class Ex3 {
     public static void main(String[] args) {
+        // creating a tree with random black height
+        // Creating a binary tree with color, RED = true, BLACK = false, from elizabet class
+        Node root = new Node(10, false);
+        root.left = new Node(5, false);
+        root.right = new Node(15, false);
+        root.left.left = new Node(2, true);
+        root.left.left.left = new Node(1, false);
+        root.left.right = new Node(7, true);
+        root.right.left = new Node(13, true);
+        root.right.left.right = new Node(14, false);
+        root.right.right = new Node(21, true);
+        root.left.left.right = new Node(6, false);
+        root.right.right.right = new Node(22, false);
+
+        if (countBlackNodes(root, 0) != -1) {
+            System.out.println("A valid BST");
+        } else {
+            System.out.println("Not a valid BST");
+        }
+
+        boolean ans = false;
+        System.out.println(ans == false);
 
     }
-    public static boolean isValidBST(BinaryTree tree){
+
+    public static boolean isValidBST(BinaryTree tree) {
         return isValidBST(tree.getRoot(), null, null);
     }
 
-    public static boolean hasValidHeight(BinaryTree tree){
-        return false;
+    public static boolean hasValidHeight(BinaryTree tree) {
+        boolean ans = isValidBST(tree);
+        if (ans == false) { // checking before if it is binary search tree
+            return false;
+        }
+        if (tree.getRoot() == null) {
+            return true;
+        }
+        return countBlackNodes(tree.getRoot(), 0) != -1;
     }
+
 
     /**
      * This function is checking if the tree is a binary search tree, means:
@@ -41,22 +72,68 @@ public class Ex3 {
 
     // From assignment 3
     public static boolean isValidBST(Node n, Integer max, Integer min) {
-
         // an empty binary trees is a valid BST.
         if (n == null) {
             return true;
         }
-
         // in the recursion when we go each to left or subtree it will check thew condition of the definition of
         if (max != null && n.getKey() >= max) {
             return false; // for checking the right side
         }
-
         if (min != null && n.getKey() <= min) { // for checking the left side
             return false;
         }
-
         return isValidBST(n.left, n.getKey(), min) && isValidBST(n.right, max, n.getKey());
     }
 
+
+    // The help function for function2
+
+    /**
+     * We are counting the black height from each subtree starting from the root and incrementing, every time we see black node.
+     * Then in the end if they are different the right path from the left path, means there is a different number of black nodes.
+     * in the wrapping function, if the answer is different from -1 means the Red-Black tree is correct
+     */
+    // Method to check if all paths from root to leaves have the same number of black nodes
+    // Helper method to count the number of black nodes in each path
+    public static int countBlackNodes(Node node, int blackCount) {
+        if (node == null) {
+            return blackCount;
+        }
+
+        int leftCount = countBlackNodes(node.left, blackCount);
+        int rightCount = countBlackNodes(node.right, blackCount);
+
+        if (leftCount != rightCount || leftCount == -1) {
+            return -1; // means the black path are different one of each other
+        }
+        if (node.isColor() == false) { // means it is black node
+            return blackCount + 1;
+        } else {
+            return 0 + blackCount;
+        }
+        //return Math.max(leftCount, rightCount);
+    }
+
+    // another way that fucntion
+
+    public static boolean isValidBST2(BinaryTree tree) {
+        return isValidBST2(tree.getRoot());
+    }
+
+    public static boolean isValidBST2(Node root) {
+        if (root.left == null && root.right == null) {
+            return true;
+        }
+        if (root.left != null && root.key < root.left.key) {
+            return false;
+        }
+        if (root.right != null && root.key > root.right.key) {
+            return false;
+        }
+        return isValidBST2(root.left) && isValidBST2(root.right);
+    }
 }
+
+
+
