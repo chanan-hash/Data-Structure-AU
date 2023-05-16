@@ -2,13 +2,17 @@ public class BinaryTree {
 
     /**
      * This binary tree is representing Red-Black Tree.
-     * This  tree is first a binary search tree and each node has also an argument of color (boolean, red = 1, black = 0,
+     * This  tree is first a binary search tree and each node has also an argument of color (boolean, red = 1, black = 0)
      * that helps maintain the tree with it functions
      * of complexity of O(log(n))
      */
+    //private
     private Node root;
     int size;
 
+    public Node getRoot(){
+        return this.root;
+    }
     public BinaryTree() {
         root = null;
         size = 0;
@@ -48,12 +52,10 @@ public class BinaryTree {
 
     // From assignment 3
     public static boolean isValidBST(Node n, Integer max, Integer min) {
-
         // an empty binary trees is a valid BST.
         if (n == null) {
             return true;
         }
-
         // in the recursion when we go each to left or subtree it will check thew condition of the definition of
         if (max != null && n.getKey() >= max) {
             return false; // for checking the right side
