@@ -36,7 +36,7 @@ public class Ex3 {
         Node node6 = new Node(12, BLACK);
         Node node7 = new Node(15, BLACK);
 
-        root.left = node1;
+        root2.left = node1;
         root.right = node2;
         node1.left = node3;
         node1.right = node4;
@@ -44,11 +44,36 @@ public class Ex3 {
         node2.right = node6;
         node6.right = node7;
 
-        if (countBlackNodes(root2,0) == -1) {
+        if (countBlackNodes(root2,0) != -1) {
             System.out.println("A valid BST");
         } else {
             System.out.println("Not a valid BST");
         }
+
+
+        // suppose to be valid but getting not
+        Node roo3 = new Node(7,RED);
+        roo3.left = new Node(4,BLACK);
+        roo3.right = new Node(8,BLACK);
+        roo3.left.left = new Node(5,BLACK);
+        roo3.right.right = new Node(9,BLACK);
+        roo3.left.right = new Node(2,RED);
+        roo3.right.left = new Node(1,RED);
+        roo3.left.left.left = new Node(6,RED);
+        roo3.right.right.right = new Node(43,RED);
+        roo3.left.left.right = new Node(36,RED);
+        roo3.left.right.left = new Node(48,BLACK);
+        roo3.right.right.left = new Node(21,RED);
+        roo3.right.left.left = new Node(22,BLACK);
+        roo3.right.left.right = new Node(24,RED);
+
+        System.out.println(countBlackNodes(roo3,0));
+        if (countBlackNodes(roo3,0) != -1) {
+            System.out.println("A valid BST");
+        } else {
+            System.out.println("Not a valid BST");
+        }
+
     }
 
     public static boolean isValidBST(BinaryTree tree) {
