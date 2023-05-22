@@ -3,76 +3,41 @@ public class Ex3 {
     static final boolean BLACK = true;
 
     public static void main(String[] args) {
+
+        Node r = new Node(8);
+        r.left = new Node(5);
+        r.right = new Node(10);
+//        System.out.println(isValidBST2(r));
+        System.out.println(isValidBST(r, null, null)); // true
+
+        Node root4 = new Node(10);
+        root4.left = new Node(5);
+        root4.right = new Node(15);
+        root4.left.left = new Node(2);
+        root4.left.left.left = new Node(1);
+        root4.left.right = new Node(7);
+        root4.right.left = new Node(13);
+        root4.right.left.right = new Node(14);
+        root4.right.right = new Node(21);
+
+        //System.out.println(isValidBST2(root4));
+        System.out.println(isValidBST(root4, null, null)); // true
+
+
+        Node root3 = new Node(5);
+        root3.left = new Node(7);
+        root3.right = new Node(10);
+
+        System.out.println(isValidBST(root3, null, null)); // false
+
+
         // creating a tree with random black height
         // Creating a binary tree with color, RED = true, BLACK = false, from elizabet class
-//        Node root = new Node(10, BLACK);
-//        root.left = new Node(5, BLACK);
-//        root.right = new Node(15, BLACK);
-//        root.left.left = new Node(2, RED);
-//        root.left.left.left = new Node(1, BLACK);
-//        root.left.right = new Node(7, RED);
-//        root.right.left = new Node(13, RED);
-//        root.right.left.right = new Node(14,BLACK);
-//        root.right.right = new Node(21, RED);
-//       // root.left.right.left = new Node(6, BLACK);
-//        root.right.right.right = new Node(22, BLACK);
-//
-//        if (countBlackNodes(root,0) != -1) {
-//            System.out.println("A valid BST");
-//        } else {
-//            System.out.println("Not a valid BST");
-//        }
-//
-//        boolean ans = false;
-//        System.out.println(ans == false);
-//
-//
-//        Node root2 = new Node(7, BLACK);
-//        Node node1 = new Node(3, RED);
-//        Node node2 = new Node(10, RED);
-//        Node node3 = new Node(1, BLACK);
-//        Node node4 = new Node(5, BLACK);
-//        Node node5 = new Node(8, BLACK);
-//        Node node6 = new Node(12, BLACK);
-//        Node node7 = new Node(15, BLACK);
-//
-//        root2.left = node1;
-//        root.right = node2;
-//        node1.left = node3;
-//        node1.right = node4;
-//        node2.left = node5;
-//        node2.right = node6;
-//        node6.right = node7;
-//
-//        if (countBlackNodes(root2,0) != -1) {
-//            System.out.println("A valid BST");
-//        } else {
-//            System.out.println("Not a valid BST");
-//        }
+
 
 
         // suppose to be valid but getting not
-        Node roo3 = new Node(7,RED);
-        roo3.left = new Node(4,BLACK);
-        roo3.right = new Node(8,BLACK);
-        roo3.left.left = new Node(5,BLACK);
-        roo3.right.right = new Node(9,BLACK);
-        roo3.left.right = new Node(2,RED);
-        roo3.right.left = new Node(1,RED);
-        roo3.left.left.left = new Node(6,RED);
-        roo3.right.right.right = new Node(43,RED);
-        roo3.left.left.right = new Node(36,RED);
-        roo3.left.right.left = new Node(48,BLACK);
-        roo3.right.right.left = new Node(21,RED);
-        roo3.right.left.left = new Node(22,BLACK);
-        roo3.right.left.right = new Node(24,RED); // if we'll change to black it will be false
 
-        System.out.println(countBlackNodes(roo3,0));
-        if (countBlackNodes(roo3,0) != -1) {
-            System.out.println("A valid BST");
-        } else {
-            System.out.println("Not a valid BST");
-        }
 
     }
 
@@ -114,6 +79,7 @@ public class Ex3 {
      * and as the max value to the right subtree
      */
 
+    // elizabet siad that we can assume that the whole keys are different
     // visualisation for the function:
     // https://www.youtube.com/watch?v=RzagTQQbn5k
 
@@ -134,6 +100,7 @@ public class Ex3 {
     }
 
     // The help function for function2
+
     /**
      * We are counting the black height from each subtree starting from the root and incrementing, every time we see black node.
      * Then in the end if they are different the right path from the left path, means there is a different number of black nodes.
@@ -142,61 +109,85 @@ public class Ex3 {
     // Method to check if all paths from root to leaves have the same number of black nodes
     // Helper method to count the number of black nodes in each path
 
-    public static int countBlackNodes(Node node, int blackCount) {
-        if (node == null) {
-            return blackCount;
-        }
-
-        if (node.isColor() == BLACK) { // means it is black node
-            blackCount++;
-        }
-
-        int leftCount = countBlackNodes(node.left, blackCount);
-        int rightCount = countBlackNodes(node.right, blackCount);
-
-        if (node.left != null && node.right != null && leftCount != rightCount) {
-            return -1; // means the black path are different one of each other
-        }
-
-        return Math.max(leftCount, rightCount);
-    }
-
 //    public static int countBlackNodes(Node node, int blackCount) {
 //        if (node == null) {
 //            return blackCount;
 //        }
 //
+//        if (node.isColor() == BLACK) { // means it is black node
+//            blackCount++;
+//        }
+//
 //        int leftCount = countBlackNodes(node.left, blackCount);
 //        int rightCount = countBlackNodes(node.right, blackCount);
 //
-//        if (leftCount != rightCount || leftCount == -1) {
+//        if (node.left != null && node.right != null && leftCount != rightCount) {
 //            return -1; // means the black path are different one of each other
 //        }
-//        if (node.isColor() == false) { // means it is black node
-//            return blackCount + 1;
-//        } else {
-//            return 0 + blackCount;
-//        }
-//        //return Math.max(leftCount, rightCount);
+//
+//        return Math.max(leftCount, rightCount);
 //    }
+    public static int countBlackNodes(Node node, int blackCount) {
+        if (node == null) {
+            return blackCount;
+        }
+
+        int leftCount = countBlackNodes(node.left, blackCount);
+        int rightCount = countBlackNodes(node.right, blackCount);
+
+        if (leftCount != rightCount || leftCount == -1) {
+            return -1; // means the black path are different one of each other
+        }
+        if (node.isColor() == BLACK) { // means it is black node
+            return blackCount + 1;
+        } else {
+            return 0 + blackCount;
+        }
+//        return Math.max(leftCount, rightCount);
+    }
 
     // another way that fucntion
 
-    public static boolean isValidBST2(BinaryTree tree) {
-        return isValidBST2(tree.getRoot());
+//    public static boolean isValidBST2(BinaryTree tree) {
+//        return isValidBST2(tree.getRoot());
+//    }
+//
+//    public static boolean isValidBST2(Node root) {
+//        if (root.left == null && root.right == null) {
+//            return true;
+//        }
+//        if (root.left != null && root.key < root.left.key) {
+//            return false;
+//        }
+//        if (root.right != null && root.key > root.right.key) {
+//            return false;
+//        }
+//        return isValidBST2(root.left) && isValidBST2(root.right);
+//    }
+
+
+    public static boolean hasValidHeight2(BinaryTree tree) {
+        return hasValidHeight1(tree.getRoot());
     }
 
-    public static boolean isValidBST2(Node root) {
-        if (root.left == null && root.right == null) {
+    public static boolean hasValidHeight1(Node nd) {
+        if (nd == null) {
             return true;
         }
-        if (root.left != null && root.key < root.left.key) {
+        if (hight(nd.getLeft()) != hight(nd.getRight())) {
             return false;
         }
-        if (root.right != null && root.key > root.right.key) {
-            return false;
+        return hasValidHeight1(nd.getRight()) && hasValidHeight1(nd.getLeft());
+    }
+
+    public static int hight(Node nd) {
+        if (nd == null) {
+            return 0;
         }
-        return isValidBST2(root.left) && isValidBST2(root.right);
+        if (nd.isColor() == BLACK) {
+            return Math.max(hight(nd.getLeft()), hight(nd.getLeft())) + 1;
+        }
+        return Math.max(hight(nd.getLeft()), hight(nd.getLeft()));
     }
 }
 

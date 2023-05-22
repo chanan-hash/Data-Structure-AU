@@ -209,61 +209,61 @@ public class RedBlackTree {
     }
 
     // assignment 3
-    public boolean isBlackHeight() {
-        if (root == null) {
-            return true;
-        }
-        return countBlackNodes(root, 0) != -1;
-    }
-
-    // Helper method to count the number of black nodes in each path
-    private int countBlackNodes(Node node, int blackCount) {
-        if (node == null) {
-            return blackCount;
-        }
-
-        if (node.getColor() == BLACK) { // means it is black node
-            blackCount++;
-        }
-
-        int leftCount = countBlackNodes(node.left, blackCount);
-        int rightCount = countBlackNodes(node.right, blackCount);
-
-        if (node.left != null && node.right != null && leftCount != rightCount) {
-            return -1; // means the black path are different one of each other
-        }
-
-        return Math.max(leftCount, rightCount);
-    }
-
-
-
-    public boolean hasValidHeight2() {
-        if (root == null) {
-            return true;
-        }
-        return countBlackNodes2(root, 0) != -1;
-    }
+//    public boolean isBlackHeight() {
+//        if (root == null) {
+//            return true;
+//        }
+//        return countBlackNodes(root, 0) != -1;
+//    }
+//
+//    // Helper method to count the number of black nodes in each path
+//    private int countBlackNodes(Node node, int blackCount) {
+//        if (node == null) {
+//            return blackCount;
+//        }
+//
+//        if (node.getColor() == BLACK) { // means it is black node
+//            blackCount++;
+//        }
+//
+//        int leftCount = countBlackNodes(node.left, blackCount);
+//        int rightCount = countBlackNodes(node.right, blackCount);
+//
+//        if (node.left != null && node.right != null && leftCount != rightCount) {
+//            return -1; // means the black path are different one of each other
+//        }
+//
+//        return Math.max(leftCount, rightCount);
+//    }
 
 
-    public static int countBlackNodes2(Node node, int blackCount) {
-        if (node == null) {
-            return blackCount;
-        }
 
-        int leftCount = countBlackNodes2(node.left, blackCount);
-        int rightCount = countBlackNodes2(node.right, blackCount);
+//    public boolean hasValidHeight2() {
+//        if (root == null) {
+//            return true;
+//        }
+//        return countBlackNodes2(root, 0) != -1;
+//    }
 
-        if (leftCount != rightCount || leftCount == -1) {
-            return -1; // means the black path are different one of each other
-        }
 
-        if (node.color == BLACK) { // means it is black node
-            return blackCount + 1;
-        } else {
-            return blackCount + 0;
-        }
-    }
+//    public static int countBlackNodes2(Node node, int blackCount) {
+//        if (node == null) {
+//            return blackCount;
+//        }
+//
+//        int leftCount = countBlackNodes2(node.left, blackCount);
+//        int rightCount = countBlackNodes2(node.right, blackCount);
+//
+//        if (leftCount != rightCount || leftCount == -1) {
+//            return -1; // means the black path are different one of each other
+//        }
+//
+//        if (node.color == BLACK) { // means it is black node
+//            return blackCount + 1;
+//        } else {
+//            return blackCount + 0;
+//        }
+//    }
 
 
 
@@ -283,8 +283,11 @@ public class RedBlackTree {
         tree.insert(4);
         tree.printPreorderPlus();
 
-        System.out.println(tree.isBlackHeight());
-        System.out.println(tree.hasValidHeight2());
+//        System.out.println(tree.isBlackHeight());
+//        System.out.println(tree.hasValidHeight2());
+
+
+
     }
 
 }
