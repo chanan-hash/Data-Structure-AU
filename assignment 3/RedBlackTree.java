@@ -265,6 +265,29 @@ public class RedBlackTree {
 //        }
 //    }
 
+    public static boolean hasValidHeight2(RedBlackTree tree) {
+        return hasValidHeight1(tree.root);
+    }
+
+    public static boolean hasValidHeight1(Node nd) {
+        if (nd == null) {
+            return true;
+        }
+        if (hight(nd.left) != hight(nd.right)) {
+            return false;
+        }
+        return hasValidHeight1(nd.right) && hasValidHeight1(nd.left);
+    }
+
+    public static int hight(Node nd) {
+        if (nd == null) {
+            return 0;
+        }
+        if (nd.color == BLACK) {
+            return Math.max(hight(nd.left), hight(nd.right)) + 1;
+        }
+        return Math.max(hight(nd.left), hight(nd.left));
+    }
 
 
 
@@ -286,7 +309,7 @@ public class RedBlackTree {
 //        System.out.println(tree.isBlackHeight());
 //        System.out.println(tree.hasValidHeight2());
 
-
+        System.out.println(hasValidHeight2(tree));
 
     }
 

@@ -116,6 +116,44 @@ class Ex3Test {
         assertTrue(Ex3.hasValidHeight1(roo));
     }
 
+    @Test
+    public void testValidHeight5() {
+
+        Node root4 = new Node(43, BLACK);
+        root4.left = new Node(3, RED);
+        root4.right = new Node(645, BLACK);
+        root4.left.left = new Node(2, BLACK);
+        root4.right.right = new Node(2342, RED);
+        root4.right.left = new Node(324, RED);
+        root4.left.right = new Node(24, BLACK);
+        root4.left.right.right = new Node(40, RED);
+        root4.left.right.left = new Node(4, RED);
+
+        assertTrue(Ex3.isValidBST(root4, null, null));
+        assertTrue(Ex3.hasValidHeight1(root4));
+    }
+
+
+    @Test
+    public void testValidHeight6() {
+        Node root5 = new Node(13, BLACK);
+        // left subTree
+        root5.left = new Node(8, RED);
+        root5.left.left = new Node(1, BLACK);
+        root5.left.right = new Node(11, BLACK);
+        root5.left.left.right = new Node(6, RED);
+
+        // right subTree
+        root5.right = new Node(17, RED);
+        root5.right.left = new Node(15, BLACK);
+        root5.right.right = new Node(25, BLACK);
+        root5.right.right.left = new Node(22, RED);
+        root5.right.right.right = new Node(27, RED);
+
+        assertTrue(Ex3.isValidBST(root5, null, null));
+        assertTrue(Ex3.hasValidHeight1(root5));
+
+    }
 
 }
 

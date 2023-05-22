@@ -257,32 +257,57 @@ public class ElizabetRBT {
         return balance(h);
     }
 
-    public boolean isBlackHeight() {
-        if (root == null) {
-            return true;
-        }
-        return countBlackNodes(root, 0) != -1;
-    }
+//    public boolean isBlackHeight() {
+//        if (root == null) {
+//            return true;
+//        }
+//        return countBlackNodes(root, 0) != -1;
+//    }
 
     // Helper method to count the number of black nodes in each path
-    private int countBlackNodes(Node node, int blackCount) {
-        if (node == null) {
-            return blackCount;
-        }
+//    private int countBlackNodes(Node node, int blackCount) {
+//        if (node == null) {
+//            return blackCount;
+//        }
+//
+//        if (node.color == BLACK) { // means it is black node
+//            blackCount++;
+//        }
+//
+//        int leftCount = countBlackNodes(node.left, blackCount);
+//        int rightCount = countBlackNodes(node.right, blackCount);
+//
+//        if (node.left != null && node.right != null && leftCount != rightCount) {
+//            return -1; // means the black path are different one of each other
+//        }
+//
+//        return Math.max(leftCount, rightCount);
+//    }
 
-        if (node.color == BLACK) { // means it is black node
-            blackCount++;
-        }
-
-        int leftCount = countBlackNodes(node.left, blackCount);
-        int rightCount = countBlackNodes(node.right, blackCount);
-
-        if (node.left != null && node.right != null && leftCount != rightCount) {
-            return -1; // means the black path are different one of each other
-        }
-
-        return Math.max(leftCount, rightCount);
+    public static boolean hasValidHeight2(ElizabetRBT tree) {
+        return hasValidHeight1(tree.root);
     }
+
+    public static boolean hasValidHeight1(Node nd) {
+        if (nd == null) {
+            return true;
+        }
+        if (hight(nd.left) != hight(nd.right)) {
+            return false;
+        }
+        return hasValidHeight1(nd.right) && hasValidHeight1(nd.left);
+    }
+
+    public static int hight(Node nd) {
+        if (nd == null) {
+            return 0;
+        }
+        if (nd.color == BLACK) {
+            return Math.max(hight(nd.left), hight(nd.left)) + 1;
+        }
+        return Math.max(hight(nd.left), hight(nd.left));
+    }
+
 
 
     public static void main(String[] args) {
@@ -291,15 +316,17 @@ public class ElizabetRBT {
         ElizabetRBT st = new ElizabetRBT();
         for (int i = 0; i < keys.length; i++) {
             st.insert(keys[i], i);
-            st.printPreorderPlus();
+          //  st.printPreorderPlus();
             System.out.println();
         }
         System.out.println();
         st.printPreorderPlus();
+        System.out.println(hasValidHeight2(st));
         System.out.println("\n delete c");
         st.delete("c");
         st.printPreorderPlus();
-        System.out.println(st.isBlackHeight());
+//        System.out.println(st.isBlackHeight());
+        System.out.println(hasValidHeight2(st)); // because we have deleted 'c'
     }
 }
 
