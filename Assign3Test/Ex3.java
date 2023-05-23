@@ -1,9 +1,14 @@
 import java.util.ArrayList;
-//import java.util.Arrays;
+
+import java.util.Arrays;
 
 public class Ex3 {
 
     public static void main(String[] args) {
+        Node root3 = new Node(5);
+        root3.left = new Node(7);
+        root3.right = new Node(10);
+        System.out.println(isValidBST(root3));
 
     }
 
@@ -40,13 +45,13 @@ public class Ex3 {
     }
 
     public static boolean isValidBST(Node root) {
-        if (root.left == null && root.right == null) {
+        if (root == null) {
             return true;
         }
-        if (root.right == null && root.left.getKey() > root.getKey()) {
+        if (root.left != null && root.left.getKey() > root.getKey()) {
             return false;
         }
-        if (root.left == null && root.right.getKey() < root.getKey()) {
+        if (root.right != null && root.right.getKey() < root.getKey()) {
             return false;
         }
         return isValidBST(root.left) && isValidBST(root.right);
