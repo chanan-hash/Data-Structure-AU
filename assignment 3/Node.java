@@ -27,7 +27,7 @@ public class Node {
     }
 
     public Node getLeft() {
-        return left;
+        return this.left;
     }
 
     public void setLeft(Node left) {
@@ -35,7 +35,7 @@ public class Node {
     }
 
     public Node getRight() {
-        return right;
+        return this.right;
     }
 
     public void setRight(Node right) {

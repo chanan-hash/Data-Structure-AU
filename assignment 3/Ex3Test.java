@@ -27,15 +27,11 @@ class Ex3Test {
         node2.left = node5;
         node2.right = node6;
 
-        //tree.getRoot() = root;
-
         assertTrue(Ex3.hasValidHeight1(root));
     }
 
     @Test
     public void testInvalidHeight() {
-        BinaryTree tree = new BinaryTree();
-
         // Create an invalid red-black tree
         Node root = new Node(7, BLACK);
         Node node1 = new Node(3, RED);

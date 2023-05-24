@@ -35,7 +35,6 @@ public class Ex3 {
         // Creating a binary tree with color, RED = true, BLACK = false, from elizabet class
 
 
-
         // suppose to be valid but getting not
 
 
@@ -185,9 +184,36 @@ public class Ex3 {
             return 0;
         }
         if (nd.isColor() == BLACK) {
-            return Math.max(hight(nd.getLeft()), hight(nd.getLeft())) + 1;
+            return Math.max(hight(nd.getLeft()), hight(nd.getRight())) + 1; // changed --> adding also getRight
         }
-        return Math.max(hight(nd.getLeft()), hight(nd.getLeft()));
+        return Math.max(hight(nd.getLeft()), hight(nd.getRight()));
+    }
+
+
+    public static int _numBlack(Node root) {
+        if (root == null) {
+            return 0;
+        }
+        int black_left = _numBlack(root.left);
+        int black_right = _numBlack(root.right);
+        if (black_left != black_right || black_left == -1) {
+            return -1;
+        }
+        if (root.isColor() == BLACK) {
+            return 1 + black_left;
+        } else {
+            return 0 + black_left;
+        }
+    }
+
+    public static boolean isBalanced(Node root) {
+
+        int black_left = _numBlack(root.left);
+        int black_right = _numBlack(root.right);
+        if ((black_left != black_right) || (black_left == -1)) {
+            return false;
+        }
+        return true;
     }
 }
 
