@@ -57,6 +57,8 @@ class Ex3Test {
         assertFalse(Ex3.hasValidHeight1(root));
     }
 
+
+    // need to be checked again
     @Test
     public void testValidHeight2() {
 
@@ -153,6 +155,16 @@ class Ex3Test {
         assertTrue(Ex3.isValidBST(root5, null, null));
         assertTrue(Ex3.hasValidHeight1(root5));
 
+    }
+
+    @Test
+   void testValidHeight7(){
+        Node root7 = new Node(8,BLACK);
+        root7.left = new Node(7,RED);
+        root7.right = new Node(58,BLACK);
+        root7.left.left = new Node(34,BLACK);
+
+        assertFalse(Ex3.hasValidHeight1(root7));
     }
 
 }
