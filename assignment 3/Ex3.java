@@ -24,6 +24,30 @@ public class Ex3 {
         System.out.println(isValidBST(root4, null, null)); // true
 
 
+        Node root8 = new Node(25, BLACK);
+
+        // left subtree
+        root8.left = new Node(12, BLACK);
+        root8.left.left = new Node(6, BLACK);
+
+        root8.left.right = new Node(15, RED);
+        root8.left.right.left = new Node(14, BLACK);
+        root8.left.right.right = new Node(16, BLACK);
+        root8.left.right.left.left = new Node(13, RED);
+
+        // right subtree
+        root8.right = new Node(100, BLACK);
+        root8.right.left = new Node(37, BLACK);
+        root8.right.left.left = new Node(27, RED);
+        root8.right.left.right = new Node(50, RED);
+
+        root8.right.right = new Node(150, RED);
+        root8.right.right.right = new Node(167, BLACK);
+        root8.right.right.left = new Node(125, BLACK);
+        root8.right.right.left.left = new Node(112, RED);
+
+        System.out.println("This is: " + isValidBST(root8,null,null));
+
         Node root3 = new Node(5);
         root3.left = new Node(7);
         root3.right = new Node(10);

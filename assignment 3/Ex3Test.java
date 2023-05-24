@@ -154,14 +154,138 @@ class Ex3Test {
     }
 
     @Test
-   void testValidHeight7(){
-        Node root7 = new Node(8,BLACK);
-        root7.left = new Node(7,RED);
-        root7.right = new Node(58,BLACK);
-        root7.left.left = new Node(34,BLACK);
+    void testValidHeight7() {
+        Node root7 = new Node(8, BLACK);
+        root7.left = new Node(7, RED);
+        root7.right = new Node(58, BLACK);
+        root7.left.left = new Node(34, BLACK);
 
         assertFalse(Ex3.hasValidHeight1(root7));
     }
 
+    @Test
+    void testValidHeight8() {
+
+        Node root8 = new Node(25, BLACK);
+
+        // left subtree
+        root8.left = new Node(12, BLACK);
+        root8.left.left = new Node(6, BLACK);
+
+        root8.left.right = new Node(15, RED);
+        root8.left.right.left = new Node(14, BLACK);
+        root8.left.right.right = new Node(16, BLACK);
+        root8.left.right.left.left = new Node(13, RED);
+
+        // right subtree
+        root8.right = new Node(100, BLACK);
+        root8.right.left = new Node(37, BLACK);
+        root8.right.left.left = new Node(27, RED);
+        root8.right.left.right = new Node(50, RED);
+
+        root8.right.right = new Node(150, RED);
+        root8.right.right.right = new Node(167, BLACK);
+        root8.right.right.left = new Node(125, BLACK);
+        root8.right.right.left.left = new Node(112, RED);
+
+        assertTrue(Ex3.isValidBST(root8, null, null));
+        assertTrue(Ex3.hasValidHeight1(root8));
+        assertTrue(Ex3.isBalanced(root8));
+
+    }
+
+    @Test
+    void testValidHeight9() {
+
+        Node root8 = new Node(25, BLACK);
+
+        // left subtree
+        root8.left = new Node(12, BLACK);
+        root8.left.left = new Node(6, BLACK);
+
+        root8.left.right = new Node(15, RED);
+        root8.left.right.left = new Node(14, RED); // changed from BLACK to RED
+        root8.left.right.right = new Node(16, BLACK);
+        root8.left.right.left.left = new Node(13, BLACK); // changed from RED to BLACK
+
+        // right subtree
+        root8.right = new Node(100, BLACK);
+        root8.right.left = new Node(37, BLACK);
+        root8.right.left.left = new Node(27, RED);
+        root8.right.left.right = new Node(50, RED);
+
+        root8.right.right = new Node(150, RED);
+        root8.right.right.right = new Node(167, BLACK);
+        root8.right.right.left = new Node(125, BLACK);
+        root8.right.right.left.right = new Node(112, RED);
+
+        assertFalse(Ex3.hasValidHeight1(root8)); // supposed to be true and not false
+        assertFalse(Ex3.isBalanced(root8));
+
+    }
+
+
+    @Test
+    void testValidHeight10() {
+        Node root10 = new Node(20,BLACK);
+
+        // left subtree
+        root10.left = new Node(10,BLACK);
+        root10.left.left = new Node(5,BLACK);
+        root10.left.left.left = new Node(3,BLACK);
+        root10.left.left.right = new Node(7,BLACK);
+
+        root10.left.right = new Node(15,RED);
+        root10.left.right.left = new Node(13,BLACK);
+        root10.left.right.right = new Node(17,BLACK);
+
+        // right subtree
+        root10.right = new Node(30,BLACK);
+        root10.right.left = new Node(25,BLACK);
+        root10.right.left.left = new Node(23,BLACK);
+        root10.right.left.right = new Node(27,BLACK);
+
+        root10.right.right = new Node(35,BLACK);
+        root10.right.right.left = new Node(33,BLACK);
+        root10.right.right.right = new Node(37,BLACK);
+
+        assertTrue(Ex3.isValidBST(root10,null,null));
+        assertFalse(Ex3.hasValidHeight1(root10)); // supposed to be true and not false
+        assertFalse(Ex3.isBalanced(root10));
+
+    }
+
+    @Test
+    void testValidHeight11() {
+        Node root11 = new Node(20,BLACK);
+
+        // left subtree
+        root11.left = new Node(10,RED); // changed the color to RED
+        root11.left.left = new Node(5,BLACK);
+        root11.left.left.left = new Node(3,BLACK);
+        root11.left.left.right = new Node(7,BLACK);
+
+        root11.left.right = new Node(15,BLACK); // changed the color to BLACK
+        root11.left.right.left = new Node(13,BLACK);
+        root11.left.right.right = new Node(17,BLACK);
+
+        // right subtree
+        root11.right = new Node(30,BLACK);
+        root11.right.left = new Node(18,RED); // changed the ket to 18, and the color to RED
+        root11.right.left.left = new Node(23,BLACK);
+        root11.right.left.right = new Node(27,BLACK);
+
+        root11.right.right = new Node(35,RED); // changed the color to RED
+        root11.right.right.left = new Node(33,BLACK);
+        root11.right.right.right = new Node(37,BLACK);
+
+        assertFalse(Ex3.isValidBST(root11,null,null));
+        assertTrue(Ex3.hasValidHeight1(root11)); // supposed to be true and not false
+      //  assertTrue(Ex3.isBalanced(root11));
+
+    }
+
+
 }
+
 
