@@ -64,11 +64,11 @@ public class Ex3 {
 
     }
 
-    public static boolean isValidBST(BinaryTree tree) {
+    public static boolean isValidBST(BinaryTree2 tree) {
         return isValidBST(tree.getRoot(), null, null);
     }
 
-    public static boolean hasValidHeight(BinaryTree tree) {
+    public static boolean hasValidHeight(BinaryTree2 tree) {
         if (tree.getRoot() == null) {
             return true;
         }
@@ -189,7 +189,7 @@ public class Ex3 {
 //    }
 
 
-    public static boolean hasValidHeight2(BinaryTree tree) {
+    public static boolean hasValidHeight2(BinaryTree2 tree) {
         return hasValidHeight1(tree.getRoot());
     }
 

@@ -8,7 +8,7 @@ class Ex3Test {
 
     @Test
     public void testValidHeight() {
-        BinaryTree tree = new BinaryTree();
+        BinaryTree2 tree = new BinaryTree2();
 
         // Create a valid red-black tree
         // Create an invalid red-black tree
