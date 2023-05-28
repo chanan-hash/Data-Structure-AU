@@ -27,7 +27,7 @@ class Ex3Test {
         node2.left = node5;
         node2.right = node6;
 
-        assertTrue(Ex3.hasValidHeight1(root));
+        assertTrue(SandBoxEx3.hasValidHeight1(root));
     }
 
     @Test
@@ -50,7 +50,7 @@ class Ex3Test {
         node2.right = node6;
         node6.right = node7;
 
-        assertFalse(Ex3.hasValidHeight1(root));
+        assertFalse(SandBoxEx3.hasValidHeight1(root));
     }
 
 
@@ -70,7 +70,7 @@ class Ex3Test {
         root.left.right.left = new Node(6, BLACK);
         root.right.right.right = new Node(22, BLACK);
 
-        assertFalse(Ex3.hasValidHeight1(root));
+        assertFalse(SandBoxEx3.hasValidHeight1(root));
     }
 
 
@@ -91,7 +91,7 @@ class Ex3Test {
         roo3.right.left.left = new Node(22, BLACK);
         roo3.right.left.right = new Node(24, BLACK);
 
-        assertFalse(Ex3.hasValidHeight1(roo3));
+        assertFalse(SandBoxEx3.hasValidHeight1(roo3));
     }
 
     @Test
@@ -111,7 +111,7 @@ class Ex3Test {
 //        roo.right.left.left = new Node(22, BLACK);
 //        roo.right.left.right = new Node(24, BLACK);
 
-        assertTrue(Ex3.hasValidHeight1(roo));
+        assertTrue(SandBoxEx3.hasValidHeight1(roo));
     }
 
     @Test
@@ -127,8 +127,8 @@ class Ex3Test {
         root4.left.right.right = new Node(40, RED);
         root4.left.right.left = new Node(4, RED);
 
-        assertTrue(Ex3.isValidBST(root4, null, null));
-        assertTrue(Ex3.hasValidHeight1(root4));
+        assertTrue(SandBoxEx3.isValidBST(root4, null, null));
+        assertTrue(SandBoxEx3.hasValidHeight1(root4));
     }
 
 
@@ -148,8 +148,8 @@ class Ex3Test {
         root5.right.right.left = new Node(22, RED);
         root5.right.right.right = new Node(27, RED);
 
-        assertTrue(Ex3.isValidBST(root5, null, null));
-        assertTrue(Ex3.hasValidHeight1(root5));
+        assertTrue(SandBoxEx3.isValidBST(root5, null, null));
+        assertTrue(SandBoxEx3.hasValidHeight1(root5));
 
     }
 
@@ -160,7 +160,7 @@ class Ex3Test {
         root7.right = new Node(58, BLACK);
         root7.left.left = new Node(34, BLACK);
 
-        assertFalse(Ex3.hasValidHeight1(root7));
+        assertFalse(SandBoxEx3.hasValidHeight1(root7));
     }
 
     @Test
@@ -188,9 +188,9 @@ class Ex3Test {
         root8.right.right.left = new Node(125, BLACK);
         root8.right.right.left.left = new Node(112, RED);
 
-        assertTrue(Ex3.isValidBST(root8, null, null));
-        assertTrue(Ex3.hasValidHeight1(root8));
-        assertTrue(Ex3.isBalanced(root8));
+        assertTrue(SandBoxEx3.isValidBST(root8, null, null));
+        assertTrue(SandBoxEx3.hasValidHeight1(root8));
+        assertTrue(SandBoxEx3.isBalanced(root8));
 
     }
 
@@ -219,8 +219,8 @@ class Ex3Test {
         root8.right.right.left = new Node(125, BLACK);
         root8.right.right.left.right = new Node(112, RED);
 
-        assertFalse(Ex3.hasValidHeight1(root8)); // supposed to be true and not false
-        assertFalse(Ex3.isBalanced(root8));
+        assertFalse(SandBoxEx3.hasValidHeight1(root8)); // supposed to be true and not false
+        assertFalse(SandBoxEx3.isBalanced(root8));
 
     }
 
@@ -249,9 +249,9 @@ class Ex3Test {
         root10.right.right.left = new Node(33,BLACK);
         root10.right.right.right = new Node(37,BLACK);
 
-        assertTrue(Ex3.isValidBST(root10,null,null));
-        assertFalse(Ex3.hasValidHeight1(root10)); // supposed to be true and not false
-        assertFalse(Ex3.isBalanced(root10));
+        assertTrue(SandBoxEx3.isValidBST(root10,null,null));
+        assertFalse(SandBoxEx3.hasValidHeight1(root10)); // supposed to be true and not false
+        assertFalse(SandBoxEx3.isBalanced(root10));
 
     }
 
@@ -279,8 +279,8 @@ class Ex3Test {
         root11.right.right.left = new Node(33,BLACK);
         root11.right.right.right = new Node(37,BLACK);
 
-        assertFalse(Ex3.isValidBST(root11,null,null));
-        assertTrue(Ex3.hasValidHeight1(root11)); // supposed to be true and not false
+        assertFalse(SandBoxEx3.isValidBST(root11,null,null));
+        assertTrue(SandBoxEx3.hasValidHeight1(root11)); // supposed to be true and not false
       //  assertTrue(Ex3.isBalanced(root11));
 
     }

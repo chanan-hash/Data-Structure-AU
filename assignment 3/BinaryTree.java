@@ -1,6 +1,6 @@
 public class BinaryTree {
     /**
-     * This class represent an epmty binary tree that we can work with in our assignment questions
+     * This class represent an empty binary tree that we can work with in our assignment questions
      */
     private Node root;
     int size;
