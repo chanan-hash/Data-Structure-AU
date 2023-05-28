@@ -52,4 +52,9 @@ public class HeapTree {
         a[i] = a[j];
         a[j] = t;
     }
+
+    public void buildHeap(int[] arr, int size){ // sorting the array in a way that we will call heap
+
+    }
+
 }
