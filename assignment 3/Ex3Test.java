@@ -281,11 +281,8 @@ class Ex3Test {
 
         assertFalse(SandBoxEx3.isValidBST(root11,null,null));
         assertTrue(SandBoxEx3.hasValidHeight1(root11)); // supposed to be true and not false
-      //  assertTrue(Ex3.isBalanced(root11));
 
     }
-
-
 }
 
 
