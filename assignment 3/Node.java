@@ -1,6 +1,6 @@
 public class Node {
     private final Integer key;
-    private final boolean color; // RED = true, BLACK = false, from elizabet class
+    private final boolean color; // RED = false, BLACK = true
 
     Node left, right; // we have changed it not to be private for working on it
 
