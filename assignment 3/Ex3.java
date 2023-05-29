@@ -56,11 +56,11 @@ public class Ex3 {
         if (n == null) {
             return true;
         }
-        // in the recursion when we go each to left or subtree it will check thew condition of the definition of
+        // in the recursion when we go each to left or subtree it will check the condition of the definition of BST
         if (max != null && n.getKey() >= max) {
             return false; // for checking the right side
         }
-        if (min != null && n.getKey() <= min) { // for checking the left side
+        if (min != null && n.getKey() <= min) { // for checking the right side
             return false;
         }
         return isValidBST(n.left, n.getKey(), min) && isValidBST(n.right, max, n.getKey());
@@ -104,7 +104,7 @@ public class Ex3 {
         if (blackHeight(node.getLeft()) != blackHeight(node.getRight())) {
             return false;
         }
-        return hasValidHeightHelp(node.getRight()) && hasValidHeightHelp(node.getLeft());
+        return hasValidHeightHelp(node.getLeft()) && hasValidHeightHelp(node.getRight());
     }
 
     public static int blackHeight(Node n) { // O(n)
